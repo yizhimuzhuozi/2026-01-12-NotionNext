@@ -68,6 +68,7 @@ const Style = () => {
       }
 
 
+
       // 首页文章列表卡片样式
       // 增加卡片高度（移动端和桌面端）
       #theme-heo article > div {
@@ -80,10 +81,17 @@ const Style = () => {
         }
       }
 
-      // 鼠标悬停时添加淡淡的阴影
+      // 去掉文章卡片图片变黑/变灰的效果
+      #theme-heo article img,
+      #theme-heo article .notion-asset-wrapper img {
+        filter: none !important; // 移除任何滤镜效果
+        opacity: 1 !important; // 确保图片不透明
+      }
+
+      // 优化鼠标悬停阴影效果
       #theme-heo article > div:hover {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); // 淡淡的阴影
-        transform: translateY(-2px); // 轻微上浮效果
+        box-shadow: 0 4px 12px rgba(138, 92, 245, 0.15); // 使用主题紫色的淡阴影
+        transform: translateY(-3px); // 轻微上浮效果
         transition: all 0.3s ease-in-out;
       }
 
@@ -119,6 +127,22 @@ const Style = () => {
       // .dark .dark\:bg-yellow-600 {
       //   background-color: #ca8a04 !important; // 暗黑模式下的背景色
       // }
+
+      // 移除文章底部的多余占位空间
+      #theme-heo .notion-page {
+        padding-bottom: 1rem !important; // 减少底部内边距
+      }
+
+      // 移除文章底部版权声明下方的大量空白
+      #theme-heo article .notion {
+        margin-bottom: 0 !important;
+      }
+
+      // 移除文章内容区域底部占位
+      .notion-page-content {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+      }
 
 
 
