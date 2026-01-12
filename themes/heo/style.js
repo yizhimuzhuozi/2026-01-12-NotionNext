@@ -88,10 +88,11 @@ const Style = () => {
         opacity: 1 !important; // 确保图片不透明
       }
 
-      // 去掉鼠标悬停投影效果
+      // 首页文章卡片悬停投影效果
       #theme-heo article > div:hover {
-        box-shadow: none !important; // 移除阴影
-        transform: none !important; // 移除上浮效果
+        box-shadow: 0 4px 12px rgba(138, 92, 245, 0.15) !important; // 紫色主题投影
+        transform: translateY(-2px) !important; // 轻微上浮
+        transition: all 0.3s ease-in-out;
       }
 
       // 修复"随便逛逛"文字与下方内容对齐问题
@@ -165,8 +166,9 @@ const Style = () => {
         z-index: 100 !important;
       }
 
-      // 🎯 关键修复：隐藏导致大片空白的article-end元素
-      #article-end {
+      // 🎯 关键修复：隐藏导致大片空白的元素
+      #article-end,
+      .m-1overflow-x-auto {
         display: none !important;
       }
 
