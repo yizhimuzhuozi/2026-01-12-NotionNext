@@ -94,17 +94,6 @@ const Style = () => {
         transform: none !important; // 移除上浮效果
       }
 
-
-      // 调整文章列表垂直间距，与水平间距一致
-      #theme-heo article {
-        margin-bottom: 1rem !important; // 与水平间距保持一致
-      }
-
-      // 调整文章网格间距
-      #theme-heo .grid {
-        gap: 1rem !important; // 确保水平和垂直间距一致
-      }
-
       // 修复"随便逛逛"文字与下方内容对齐问题
       #banners #banner-cover {
         display: flex;
@@ -132,42 +121,49 @@ const Style = () => {
       //   background-color: #ca8a04 !important; // 暗黑模式下的背景色
       // }
 
-      // 移除文章底部的多余占位空间
-      #theme-heo .notion-page {
-        padding-bottom: 1rem !important; // 减少底部内边距
-      }
-
-      // 移除文章底部版权声明下方的大量空白
-      #theme-heo article .notion {
-        margin-bottom: 0 !important;
-      }
-
-      // 移除文章内容区域底部占位
-      .notion-page-content {
+      // **强力移除文章底部的所有空白和占位**
+      // 移除NotionPage组件的底部间距
+      #article-wrapper,
+      #article-wrapper .notion-page,
+      #article-wrapper section {
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
       }
 
-      // 修复文章底部分享按钮被遮挡的问题
-      // 确保分享按钮显示在版权信息框上方
-      #theme-heo .article-share-buttons,
-      #theme-heo .share-buttons,
-      .float-right.text-gray-600 {
-        position: relative !important;
-        z-index: 10 !important; // 提高层级，确保可以点击
+      // 移除文章主体区域底部间距
+      .article .mx-auto.md\\:w-full {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
       }
 
-      // 调整版权信息框的层级和间距
+      // 移除所有可能的底部占位元素
+      #theme-heo article,
+      #theme-heo .notion,
+      #theme-heo .notion-page-content {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+
+      // 确保分享按钮和版权声明紧凑排列
+      #theme-heo .share-bar,
+      #theme-heo .article-share-buttons {
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      // 版权信息紧贴上方内容
       #theme-heo .article-copyright,
       #theme-heo .post-copyright {
-        position: relative !important;
-        z-index: 1 !important; // 低于分享按钮
-        margin-top: 2rem !important; // 增加与上方内容的间距
+        margin-top: 0.5rem !important;
+        margin-bottom: 0 !important;
+        padding: 1rem !important;
       }
 
-
-
-
+      // 确保分享按钮可见可点击
+      .float-right.text-gray-600 {
+        position: relative !important;
+        z-index: 100 !important;
+      }
 
 
 
