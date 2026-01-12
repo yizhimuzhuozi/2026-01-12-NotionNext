@@ -166,11 +166,18 @@ const Style = () => {
         z-index: 100 !important;
       }
 
-      // 🎯 关键修复：隐藏导致大片空白的元素
+      // 🎯 关键修复：强力隐藏导致大片空白的元素
       #article-end,
-      .m-1overflow-x-auto {
+      .m-1overflow-x-auto,
+      div.m-1overflow-x-auto,
+      [class*="overflow-x-auto"] {
         display: none !important;
+        height: 0 !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        visibility: hidden !important;
       }
+
 
 
 
