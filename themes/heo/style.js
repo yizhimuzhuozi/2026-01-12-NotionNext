@@ -88,17 +88,21 @@ const Style = () => {
         opacity: 1 !important; // 确保图片不透明
       }
 
-      // 优化鼠标悬停阴影效果
+      // 去掉鼠标悬停投影效果
       #theme-heo article > div:hover {
-        box-shadow: 0 4px 12px rgba(138, 92, 245, 0.15); // 使用主题紫色的淡阴影
-        transform: translateY(-3px); // 轻微上浮效果
-        transition: all 0.3s ease-in-out;
+        box-shadow: none !important; // 移除阴影
+        transform: none !important; // 移除上浮效果
       }
 
 
-      // 文章列表增加上下间距
+      // 调整文章列表垂直间距，与水平间距一致
       #theme-heo article {
-        margin-bottom: 1.5rem; // 增加文章之间的间距
+        margin-bottom: 1rem !important; // 与水平间距保持一致
+      }
+
+      // 调整文章网格间距
+      #theme-heo .grid {
+        gap: 1rem !important; // 确保水平和垂直间距一致
       }
 
       // 修复"随便逛逛"文字与下方内容对齐问题
