@@ -144,6 +144,23 @@ const Style = () => {
         margin-bottom: 0 !important;
       }
 
+      // 修复文章底部分享按钮被遮挡的问题
+      // 确保分享按钮显示在版权信息框上方
+      #theme-heo .article-share-buttons,
+      #theme-heo .share-buttons,
+      .float-right.text-gray-600 {
+        position: relative !important;
+        z-index: 10 !important; // 提高层级，确保可以点击
+      }
+
+      // 调整版权信息框的层级和间距
+      #theme-heo .article-copyright,
+      #theme-heo .post-copyright {
+        position: relative !important;
+        z-index: 1 !important; // 低于分享按钮
+        margin-top: 2rem !important; // 增加与上方内容的间距
+      }
+
 
 
 
