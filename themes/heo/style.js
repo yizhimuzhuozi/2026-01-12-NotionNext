@@ -165,6 +165,11 @@ const Style = () => {
         z-index: 100 !important;
       }
 
+      // 🎯 关键修复：隐藏导致大片空白的article-end元素
+      #article-end {
+        display: none !important;
+      }
+
 
 
 
