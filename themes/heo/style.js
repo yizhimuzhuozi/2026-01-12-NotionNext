@@ -249,14 +249,45 @@ const Style = () => {
         border: 1px solid #e9e9e7 !important;
         border-radius: 3px !important;
         padding: 16px !important;
-        margin: 4px 0 !important;
+        margin: 8px 0 !important;
         font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
         font-size: 14px !important;
         line-height: 1.5 !important;
         overflow-x: auto !important;
         tab-size: 2 !important;
         box-shadow: none !important;
+        filter: none !important;
+        -webkit-box-shadow: none !important;
       }
+
+      // 代码块滚动条样式 - 默认隐藏，悬停时显示
+      #theme-heo .notion-code::-webkit-scrollbar,
+      #theme-heo pre.notion-code::-webkit-scrollbar,
+      #theme-heo pre[class*='language-']::-webkit-scrollbar {
+        height: 8px !important;
+        width: 8px !important;
+        background: transparent !important;
+      }
+
+      #theme-heo .notion-code::-webkit-scrollbar-thumb,
+      #theme-heo pre.notion-code::-webkit-scrollbar-thumb,
+      #theme-heo pre[class*='language-']::-webkit-scrollbar-thumb {
+        background: transparent !important;
+        border-radius: 4px !important;
+      }
+
+      #theme-heo .notion-code:hover::-webkit-scrollbar-thumb,
+      #theme-heo pre.notion-code:hover::-webkit-scrollbar-thumb,
+      #theme-heo pre[class*='language-']:hover::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2) !important;
+      }
+
+      #theme-heo .notion-code::-webkit-scrollbar-track,
+      #theme-heo pre.notion-code::-webkit-scrollbar-track,
+      #theme-heo pre[class*='language-']::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+
 
       // 代码文本
       #theme-heo .notion-code code,
