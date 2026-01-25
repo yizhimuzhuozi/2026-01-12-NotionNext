@@ -354,17 +354,15 @@ function TodayCard({ cRef, siteInfo }) {
   return (
     <div
       id='today-card'
-      className={`${
-        isCoverUp ? ' ' : 'pointer-events-none'
-      } overflow-hidden absolute hidden xl:flex flex-1 flex-col h-full top-0 w-full`}>
+      className={`${isCoverUp ? ' ' : 'pointer-events-none'
+        } overflow-hidden absolute hidden xl:flex flex-1 flex-col h-full top-0 w-full`}>
       <div
         id='card-body'
         onClick={handleCardClick}
-        className={`${
-          isCoverUp
-            ? 'opacity-100 cursor-pointer'
-            : 'opacity-0 transform scale-110 pointer-events-none'
-        } shadow transition-all duration-200 today-card h-full bg-black rounded-xl relative overflow-hidden flex items-end`}>
+        className={`${isCoverUp
+          ? 'opacity-100 cursor-pointer'
+          : 'opacity-0 transform scale-110 pointer-events-none'
+          } shadow transition-all duration-200 today-card h-full bg-black rounded-xl relative overflow-hidden flex items-end`}>
         {/* 卡片文字信息 */}
         <div
           id='today-card-info'
@@ -396,11 +394,10 @@ function TodayCard({ cRef, siteInfo }) {
         {/* 封面图 */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={siteInfo?.pageCover}
+          src={siteConfig('HERO_RECOMMEND_COVER', null, CONFIG) || siteInfo?.pageCover}
           id='today-card-cover'
-          className={`${
-            isCoverUp ? '' : ' pointer-events-none'
-          } hover:scale-110 duration-1000 object-cover cursor-pointer today-card-cover absolute w-full h-full top-0`}
+          className={`${isCoverUp ? '' : ' pointer-events-none'
+            } hover:scale-110 duration-1000 object-cover cursor-pointer today-card-cover absolute w-full h-full top-0`}
         />
       </div>
     </div>
