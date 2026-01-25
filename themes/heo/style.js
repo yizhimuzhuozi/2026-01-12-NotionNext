@@ -229,6 +229,165 @@ const Style = () => {
           transform: translateX(-50%);
         }
       }
+
+      // 隐藏代码块工具栏 - 实现 Notion 纯净风格
+      .code-toolbar .toolbar,
+      .code-toolbar .toolbar-item,
+      div.code-toolbar > .toolbar {
+        display: none !important;
+      }
+
+      // ========== Notion 代码块完整样式 ==========
+      // 代码块容器
+      .notion-code,
+      pre[class*='language-'],
+      .code-toolbar pre {
+        background: #f7f7f5 !important;
+        border: 1px solid #e9e9e7 !important;
+        border-radius: 3px !important;
+        padding: 16px !important;
+        margin: 4px 0 !important;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        overflow-x: auto !important;
+        tab-size: 2 !important;
+      }
+
+      // 代码文本
+      .notion-code code,
+      pre[class*='language-'] code,
+      code[class*='language-'] {
+        background: transparent !important;
+        color: #37352f !important;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        text-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      // Notion 代码高亮颜色
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: #8e908c !important;
+      }
+
+      .token.property,
+      .token.tag,
+      .token.boolean,
+      .token.number,
+      .token.constant,
+      .token.symbol,
+      .token.deleted {
+        color: #d73a49 !important;
+      }
+
+      .token.selector,
+      .token.attr-name,
+      .token.string,
+      .token.char,
+      .token.builtin,
+      .token.inserted {
+        color: #22863a !important;
+      }
+
+      .token.operator,
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string {
+        color: #d73a49 !important;
+        background: transparent !important;
+      }
+
+      .token.atrule,
+      .token.attr-value,
+      .token.keyword {
+        color: #005cc5 !important;
+      }
+
+      .token.function,
+      .token.class-name {
+        color: #6f42c1 !important;
+      }
+
+      .token.regex,
+      .token.important,
+      .token.variable {
+        color: #e36209 !important;
+      }
+
+      // 深色模式
+      .dark-mode .notion-code,
+      .dark-mode pre[class*='language-'],
+      .dark-mode .code-toolbar pre {
+        background: #2f3437 !important;
+        border: 1px solid #464646 !important;
+      }
+
+      .dark-mode .notion-code code,
+      .dark-mode pre[class*='language-'] code,
+      .dark-mode code[class*='language-'] {
+        color: #abb2bf !important;
+      }
+
+      .dark-mode .token.comment,
+      .dark-mode .token.prolog,
+      .dark-mode .token.doctype,
+      .dark-mode .token.cdata {
+        color: #6a737d !important;
+      }
+
+      .dark-mode .token.property,
+      .dark-mode .token.tag,
+      .dark-mode .token.boolean,
+      .dark-mode .token.number,
+      .dark-mode .token.constant,
+      .dark-mode .token.symbol,
+      .dark-mode .token.deleted {
+        color: #f97583 !important;
+      }
+
+      .dark-mode .token.selector,
+      .dark-mode .token.attr-name,
+      .dark-mode .token.string,
+      .dark-mode .token.char,
+      .dark-mode .token.builtin,
+      .dark-mode .token.inserted {
+        color: #85e89d !important;
+      }
+
+      .dark-mode .token.atrule,
+      .dark-mode .token.attr-value,
+      .dark-mode .token.keyword {
+        color: #79b8ff !important;
+      }
+
+      .dark-mode .token.function,
+      .dark-mode .token.class-name {
+        color: #b392f0 !important;
+      }
+
+      // 移除所有不需要的装饰
+      pre[class*='language-']::before,
+      pre[class*='language-']::after,
+      .code-toolbar::before,
+      .code-toolbar::after {
+        display: none !important;
+      }
+
+      // 确保代码块不被其他样式影响
+      .notion pre {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
     `}</style>
   )
 }
