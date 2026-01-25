@@ -21,7 +21,7 @@ const CONFIG = {
   HEO_HERO_TITLE_1: '分享设计',
   HEO_HERO_TITLE_2: '与科技生活',
   HEO_HERO_TITLE_3: '设计、macOS、摄影、生活',
-  HEO_HERO_TITLE_4: '这是我的日记📝',
+  HEO_HERO_TITLE_4: '365+1 摄影计划',
   HEO_HERO_TITLE_5: '我想把摄影做成日记',
   HEO_HERO_TITLE_LINK: 'https://2024-10-02-notion-bolg-3q6o0s1e1-yizhimuzhuozis-projects.vercel.app/category/%E6%91%84%E5%BD%B1&%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB',
 
