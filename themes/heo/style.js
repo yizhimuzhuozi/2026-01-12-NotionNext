@@ -238,11 +238,14 @@ const Style = () => {
       }
 
       // ========== Notion 代码块完整样式 ==========
-      // 代码块容器
-      .notion-code,
-      pre[class*='language-'],
-      .code-toolbar pre {
-        background: #f7f7f5 !important;
+      // 使用高优先级选择器确保样式生效
+      
+      // 代码块容器 - 浅色模式
+      #theme-heo .notion-code,
+      #theme-heo pre.notion-code,
+      #theme-heo pre[class*='language-'],
+      #theme-heo .code-toolbar pre[class*='language-'] {
+        background-color: #f7f7f5 !important;
         border: 1px solid #e9e9e7 !important;
         border-radius: 3px !important;
         padding: 16px !important;
@@ -252,142 +255,175 @@ const Style = () => {
         line-height: 1.5 !important;
         overflow-x: auto !important;
         tab-size: 2 !important;
+        box-shadow: none !important;
       }
 
       // 代码文本
-      .notion-code code,
-      pre[class*='language-'] code,
-      code[class*='language-'] {
-        background: transparent !important;
+      #theme-heo .notion-code code,
+      #theme-heo pre[class*='language-'] code,
+      #theme-heo code[class*='language-'] {
+        background: none !important;
         color: #37352f !important;
         font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
         font-size: 14px !important;
         line-height: 1.5 !important;
         text-shadow: none !important;
         border: none !important;
+        box-shadow: none !important;
         padding: 0 !important;
         margin: 0 !important;
       }
 
-      // Notion 代码高亮颜色
-      .token.comment,
-      .token.prolog,
-      .token.doctype,
-      .token.cdata {
+      // Notion 代码高亮颜色 - 浅色模式
+      #theme-heo .token.comment,
+      #theme-heo .token.prolog,
+      #theme-heo .token.doctype,
+      #theme-heo .token.cdata {
         color: #8e908c !important;
       }
 
-      .token.property,
-      .token.tag,
-      .token.boolean,
-      .token.number,
-      .token.constant,
-      .token.symbol,
-      .token.deleted {
+      #theme-heo .token.property,
+      #theme-heo .token.tag,
+      #theme-heo .token.boolean,
+      #theme-heo .token.number,
+      #theme-heo .token.constant,
+      #theme-heo .token.symbol,
+      #theme-heo .token.deleted {
         color: #d73a49 !important;
       }
 
-      .token.selector,
-      .token.attr-name,
-      .token.string,
-      .token.char,
-      .token.builtin,
-      .token.inserted {
+      #theme-heo .token.selector,
+      #theme-heo .token.attr-name,
+      #theme-heo .token.string,
+      #theme-heo .token.char,
+      #theme-heo .token.builtin,
+      #theme-heo .token.inserted {
         color: #22863a !important;
       }
 
-      .token.operator,
-      .token.entity,
-      .token.url,
-      .language-css .token.string,
-      .style .token.string {
+      #theme-heo .token.operator,
+      #theme-heo .token.entity,
+      #theme-heo .token.url,
+      #theme-heo .language-css .token.string,
+      #theme-heo .style .token.string {
         color: #d73a49 !important;
-        background: transparent !important;
+        background: none !important;
       }
 
-      .token.atrule,
-      .token.attr-value,
-      .token.keyword {
+      #theme-heo .token.atrule,
+      #theme-heo .token.attr-value,
+      #theme-heo .token.keyword {
         color: #005cc5 !important;
       }
 
-      .token.function,
-      .token.class-name {
+      #theme-heo .token.function,
+      #theme-heo .token.class-name {
         color: #6f42c1 !important;
       }
 
-      .token.regex,
-      .token.important,
-      .token.variable {
+      #theme-heo .token.regex,
+      #theme-heo .token.important,
+      #theme-heo .token.variable {
         color: #e36209 !important;
       }
 
       // 深色模式
-      .dark-mode .notion-code,
-      .dark-mode pre[class*='language-'],
-      .dark-mode .code-toolbar pre {
-        background: #2f3437 !important;
+      #theme-heo.dark .notion-code,
+      #theme-heo.dark pre.notion-code,
+      #theme-heo.dark pre[class*='language-'],
+      #theme-heo.dark .code-toolbar pre[class*='language-'],
+      .dark #theme-heo .notion-code,
+      .dark #theme-heo pre.notion-code,
+      .dark #theme-heo pre[class*='language-'],
+      .dark #theme-heo .code-toolbar pre[class*='language-'] {
+        background-color: #2f3437 !important;
         border: 1px solid #464646 !important;
       }
 
-      .dark-mode .notion-code code,
-      .dark-mode pre[class*='language-'] code,
-      .dark-mode code[class*='language-'] {
+      #theme-heo.dark .notion-code code,
+      #theme-heo.dark pre[class*='language-'] code,
+      #theme-heo.dark code[class*='language-'],
+      .dark #theme-heo .notion-code code,
+      .dark #theme-heo pre[class*='language-'] code,
+      .dark #theme-heo code[class*='language-'] {
         color: #abb2bf !important;
       }
 
-      .dark-mode .token.comment,
-      .dark-mode .token.prolog,
-      .dark-mode .token.doctype,
-      .dark-mode .token.cdata {
+      #theme-heo.dark .token.comment,
+      #theme-heo.dark .token.prolog,
+      #theme-heo.dark .token.doctype,
+      #theme-heo.dark .token.cdata,
+      .dark #theme-heo .token.comment,
+      .dark #theme-heo .token.prolog,
+      .dark #theme-heo .token.doctype,
+      .dark #theme-heo .token.cdata {
         color: #6a737d !important;
       }
 
-      .dark-mode .token.property,
-      .dark-mode .token.tag,
-      .dark-mode .token.boolean,
-      .dark-mode .token.number,
-      .dark-mode .token.constant,
-      .dark-mode .token.symbol,
-      .dark-mode .token.deleted {
+      #theme-heo.dark .token.property,
+      #theme-heo.dark .token.tag,
+      #theme-heo.dark .token.boolean,
+      #theme-heo.dark .token.number,
+      #theme-heo.dark .token.constant,
+      #theme-heo.dark .token.symbol,
+      #theme-heo.dark .token.deleted,
+      .dark #theme-heo .token.property,
+      .dark #theme-heo .token.tag,
+      .dark #theme-heo .token.boolean,
+      .dark #theme-heo .token.number,
+      .dark #theme-heo .token.constant,
+      .dark #theme-heo .token.symbol,
+      .dark #theme-heo .token.deleted {
         color: #f97583 !important;
       }
 
-      .dark-mode .token.selector,
-      .dark-mode .token.attr-name,
-      .dark-mode .token.string,
-      .dark-mode .token.char,
-      .dark-mode .token.builtin,
-      .dark-mode .token.inserted {
+      #theme-heo.dark .token.selector,
+      #theme-heo.dark .token.attr-name,
+      #theme-heo.dark .token.string,
+      #theme-heo.dark .token.char,
+      #theme-heo.dark .token.builtin,
+      #theme-heo.dark .token.inserted,
+      .dark #theme-heo .token.selector,
+      .dark #theme-heo .token.attr-name,
+      .dark #theme-heo .token.string,
+      .dark #theme-heo .token.char,
+      .dark #theme-heo .token.builtin,
+      .dark #theme-heo .token.inserted {
         color: #85e89d !important;
       }
 
-      .dark-mode .token.atrule,
-      .dark-mode .token.attr-value,
-      .dark-mode .token.keyword {
+      #theme-heo.dark .token.atrule,
+      #theme-heo.dark .token.attr-value,
+      #theme-heo.dark .token.keyword,
+      .dark #theme-heo .token.atrule,
+      .dark #theme-heo .token.attr-value,
+      .dark #theme-heo .token.keyword {
         color: #79b8ff !important;
       }
 
-      .dark-mode .token.function,
-      .dark-mode .token.class-name {
+      #theme-heo.dark .token.function,
+      #theme-heo.dark .token.class-name,
+      .dark #theme-heo .token.function,
+      .dark #theme-heo .token.class-name {
         color: #b392f0 !important;
       }
 
       // 移除所有不需要的装饰
-      pre[class*='language-']::before,
-      pre[class*='language-']::after,
-      .code-toolbar::before,
-      .code-toolbar::after {
+      #theme-heo pre[class*='language-']::before,
+      #theme-heo pre[class*='language-']::after,
+      #theme-heo .code-toolbar::before,
+      #theme-heo .code-toolbar::after {
         display: none !important;
       }
 
       // 确保代码块不被其他样式影响
-      .notion pre {
-        background: transparent !important;
+      #theme-heo .notion pre {
+        background: none !important;
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
       }
+
     `}</style>
   )
 }
