@@ -25,16 +25,19 @@ import { MenuItem } from './MenuItem'
 export default function NavBar(props) {
   const { locale, customMenu } = useGlobal()  // 获取 locale 和 customMenu
 
-  // 默认菜单 - 当未启用 CUSTOM_MENU 时使用
+  // 默认菜单 - 当未启用 CUSTOM_MENU 或 customMenu 为空时使用
   const defaultLinks = [
     { name: locale.NAV.INDEX, href: '/', show: true },
     { name: locale.NAV.ABOUT, href: '/about', show: true },
     { name: locale.NAV.ARCHIVE, href: '/archive', show: true },
   ]
 
-  // 如果启用 CUSTOM_MENU,使用 customMenu,否则使用默认菜单
+  // 菜单逻辑:
+  // 1. 如果启用了 CUSTOM_MENU 且 customMenu 有数据,使用 customMenu
+  // 2. 否则使用默认菜单
   const useCustomMenu = siteConfig('CUSTOM_MENU')
-  const navLinks = useCustomMenu ? customMenu : defaultLinks
+  const hasCustomMenu = customMenu && customMenu.length > 0
+  const navLinks = useCustomMenu && hasCustomMenu ? customMenu : defaultLinks
 
   return (
     <header className='w-full py-[60px] px-20'> {/* 上下60px,左右80px间距 */}
