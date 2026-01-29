@@ -1,360 +1,193 @@
-import { AdSlot } from '@/components/GoogleAdsense'
-import replaceSearchResult from '@/components/Mark'
+/**
+ * Typography 主题 - 基于 holmberg.io 设计
+ * 遵循 NotionNext 开发规范
+ */
+
+import Comment from '@/components/Comment'
 import NotionPage from '@/components/NotionPage'
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
-import { isBrowser } from '@/lib/utils'
-import dynamic from 'next/dynamic'
 import SmartLink from '@/components/SmartLink'
-import { useRouter } from 'next/router'
-import { createContext, useContext, useEffect, useRef } from 'react'
-import BlogPostBar from './components/BlogPostBar'
+import { useRef } from 'react'
+import dynamic from 'next/dynamic'
+import ArticleInfo from './components/ArticleInfo'
+import BlogListPage from './components/BlogListPage'
+import Footer from './components/Footer'
+import JumpToTopButton from './components/JumpToTopButton'
+import NavBar from './components/NavBar'
 import CONFIG from './config'
 import { Style } from './style'
-import Catalog from './components/Catalog'
 
-const AlgoliaSearchModal = dynamic(
-  () => import('@/components/AlgoliaSearchModal'),
-  { ssr: false }
-)
-
-// 主题组件
-
-const BlogArchiveItem = dynamic(() => import('./components/BlogArchiveItem'), {
-  ssr: false
-})
-const ArticleLock = dynamic(() => import('./components/ArticleLock'), {
-  ssr: false
-})
-const ArticleInfo = dynamic(() => import('./components/ArticleInfo'), {
-  ssr: false
-})
-const Comment = dynamic(() => import('@/components/Comment'), { ssr: false })
-const ArticleAround = dynamic(() => import('./components/ArticleAround'), {
-  ssr: false
-})
-const TopBar = dynamic(() => import('./components/TopBar'), { ssr: false })
-const NavBar = dynamic(() => import('./components/NavBar'), { ssr: false })
-const JumpToTopButton = dynamic(() => import('./components/JumpToTopButton'), {
-  ssr: false
-})
-const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
-const WWAds = dynamic(() => import('@/components/WWAds'), { ssr: false })
-const BlogListPage = dynamic(() => import('./components/BlogListPage'), {
-  ssr: false
-})
-const RecommendPosts = dynamic(() => import('./components/RecommendPosts'), {
-  ssr: false
-})
-
-// 主题全局状态
-const ThemeGlobalSimple = createContext()
-export const useSimpleGlobal = () => useContext(ThemeGlobalSimple)
+const AlgoliaSearchModal = dynamic(() => import('@/components/AlgoliaSearchModal'), { ssr: false })
+const ArticleLock = dynamic(() => import('./components/ArticleLock'), { ssr: false })
 
 /**
- * 基础布局
- *
- * @param {*} props
- * @returns
+ * 基础布局 - holmberg.io 风格
+ * 极简单栏设计,最大宽度约 1370px
  */
 const LayoutBase = props => {
   const { children } = props
-  const { onLoading, fullWidth } = useGlobal()
-  // const onLoading = true
+  const { onLoading } = useGlobal()
   const searchModal = useRef(null)
 
   return (
-    <ThemeGlobalSimple.Provider value={{ searchModal }}>
-      <div
-        id='theme-typography'
-        className={`${siteConfig('FONT_STYLE')} font-typography h-screen flex flex-col dark:text-gray-300 bg-white dark:bg-[#232222] overflow-hidden`}>
-        <Style />
+    <div
+      id='theme-typography'
+      className={`${siteConfig('FONT_STYLE')} min-h-screen flex flex-col bg-[rgb(250,250,250)] dark:bg-[rgb(18,18,18)] text-[rgb(22,27,34)] dark:text-[rgb(226,232,240)]`}>
+      <Style />
 
-        {siteConfig('SIMPLE_TOP_BAR', null, CONFIG) && <TopBar {...props} />}
+      {/* 顶部导航 */}
+      <NavBar {...props} />
 
-        <div className='flex flex-1 mx-auto overflow-hidden py-8 md:p-0 md:max-w-7xl md:px-24 w-screen'>
-          {/* 主体 - 使用 flex 布局 */}
-          {/* 文章详情才显示 */}
-          {/* {props.post && (
-            <div className='mt-20 hidden md:block md:fixed md:left-5 md:w-[300px]'>
-              <Catalog {...props} />
+      {/* 主内容区 */}
+      <main className='flex-1 w-full px-20'>
+        <div className='w-full'>
+          {onLoading ? (
+            <div className='flex items-center justify-center min-h-[500px]'>
+              <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black dark:border-white'></div>
             </div>
-          )} */}
-          <div className='overflow-hidden md:mt-20 flex-1 '>
-            {/* 左侧内容区域 - 可滚动 */}
-            <div
-              id='container-inner'
-              className='h-full w-full md:px-24 overflow-y-auto scroll-hidden relative'>
-              {/* 移动端导航 - 显示在顶部 */}
-              <div className='md:hidden'>
-                <NavBar {...props} />
-              </div>
-              {onLoading ? (
-                // loading 时显示 spinner
-                <div className='flex items-center justify-center min-h-[500px] w-full'>
-                  <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900 dark:border-white'></div>
-                </div>
-              ) : (
-                <>{children}</>
-              )}
-              <AdSlot type='native' />
-              {/* 移动端页脚 - 显示在底部 */}
-              <div className='md:hidden  z-30  '>
-                <Footer {...props} />
-              </div>
-            </div>
-          </div>
-
-          {/* 右侧导航和页脚 - 固定不滚动 */}
-          <div className='hidden md:flex md:flex-col md:flex-shrink-0 md:h-[100vh] sticky top-20'>
-            <NavBar {...props} />
-            <Footer {...props} />
-          </div>
+          ) : (
+            <>{children}</>
+          )}
         </div>
+      </main>
 
-        <div className='fixed right-4 bottom-4 z-20'>
-          <JumpToTopButton />
-        </div>
+      {/* 页脚 */}
+      <Footer {...props} />
 
-        {/* 搜索框 */}
-        <AlgoliaSearchModal cRef={searchModal} {...props} />
+      {/* 返回顶部按钮 */}
+      <div className='fixed right-6 bottom-6 z-20'>
+        <JumpToTopButton />
       </div>
-    </ThemeGlobalSimple.Provider>
+
+      {/* 搜索框 */}
+      <AlgoliaSearchModal cRef={searchModal} {...props} />
+    </div>
   )
 }
 
 /**
- * 博客首页
- * 首页就是列表
- * @param {*} props
- * @returns
+ * 首页 = 文章列表
  */
 const LayoutIndex = props => {
   return <LayoutPostList {...props} />
 }
+
 /**
- * 博客列表
- * @param {*} props
- * @returns
+ * 文章列表页
  */
 const LayoutPostList = props => {
-  return (
-    <>
-      <BlogPostBar {...props} />
-      <BlogListPage {...props} />
-    </>
-  )
+  const { posts } = props
+  return <BlogListPage posts={posts} />
 }
 
 /**
  * 搜索页
- * 也是博客列表
- * @param {*} props
- * @returns
  */
 const LayoutSearch = props => {
-  const { keyword } = props
-
-  useEffect(() => {
-    if (isBrowser) {
-      replaceSearchResult({
-        doms: document.getElementById('posts-wrapper'),
-        search: keyword,
-        target: {
-          element: 'span',
-          className: 'text-red-500 border-b border-dashed'
-        }
-      })
-    }
-  }, [])
-
   return <LayoutPostList {...props} />
 }
 
- function groupArticlesByYearArray(articles) {
-  const grouped = {};
-
-  for (const article of articles) {
-    const year = new Date(article.publishDate).getFullYear().toString();
-    if (!grouped[year]) {
-      grouped[year] = [];
-    }
-    grouped[year].push(article);
-  }
-
-  for (const year in grouped) {
-    grouped[year].sort((a, b) => b.publishDate - a.publishDate);
-  }
-
-  // 转成数组并按年份倒序
-  return Object.entries(grouped)
-    .sort(([a], [b]) => b - a)
-    .map(([year, posts]) => ({ year, posts }));
-}
-
-
-
 /**
  * 归档页
- * @param {*} props
- * @returns
  */
 const LayoutArchive = props => {
-  const { posts } = props
-  const sortPosts = groupArticlesByYearArray(posts)
-  return (
-    <>
-      <div className='mb-10 pb-20 md:pb-12 p-5  min-h-screen w-full'>
-        {sortPosts.map(p => (
-          <BlogArchiveItem
-            key={p.year}
-            archiveTitle={p.year}
-            archivePosts={p.posts}
-          />
-        ))}
-      </div>
-    </>
-  )
+  return <LayoutPostList {...props} />
 }
 
 /**
- * 文章详情
- * @param {*} props
- * @returns
+ * 文章详情页
  */
 const LayoutSlug = props => {
-  const { post, lock, validPassword, prev, next, recommendPosts } = props
-  const { fullWidth } = useGlobal()
+  const { post, lock, validPassword } = props
 
   return (
-    <>
+    <div className='max-w-[781px]'>
       {lock && <ArticleLock validPassword={validPassword} />}
 
       {!lock && post && (
-        <div
-          className={`px-5 pt-3 ${fullWidth ? '' : 'xl:max-w-4xl 2xl:max-w-6xl'}`}>
-          {/* 文章信息 */}
+        <article>
+          {/* 文章头部信息 */}
           <ArticleInfo post={post} />
 
-          {/* 广告嵌入 */}
-          {/* <AdSlot type={'in-article'} /> */}
-          <WWAds orientation='horizontal' className='w-full' />
-
-          <div id='article-wrapper'>
-            {/* Notion 文章主体 */}
-            {!lock && <NotionPage post={post} />}
+          {/* 文章内容 - 使用 Notion 样式 */}
+          <div className='prose prose-lg max-w-none'>
+            <NotionPage post={post} />
           </div>
 
-          {/* 分享 */}
-          {/* <ShareBar post={post} /> */}
-
-          {/* 广告嵌入 */}
-          <AdSlot type={'in-article'} />
-
-          {post?.type === 'Post' && (
-            <>
-              <ArticleAround prev={prev} next={next} />
-              <RecommendPosts recommendPosts={recommendPosts} />
-            </>
-          )}
-
           {/* 评论区 */}
-          <Comment frontMatter={post} />
-        </div>
+          <div className='mt-16'>
+            <Comment frontMatter={post} />
+          </div>
+        </article>
       )}
-    </>
+    </div>
   )
 }
 
 /**
- * 404
- * @param {*} props
- * @returns
+ * 404页面
  */
-const Layout404 = props => {
-  const { post } = props
-  const router = useRouter()
-  const waiting404 = siteConfig('POST_WAITING_TIME_FOR_404') * 1000
-  useEffect(() => {
-    // 404
-    if (!post) {
-      setTimeout(() => {
-        if (isBrowser) {
-          const article = document.querySelector(
-            '#article-wrapper #notion-article'
-          )
-          if (!article) {
-            router.push('/404').then(() => {
-              console.warn('找不到页面', router.asPath)
-            })
-          }
-        }
-      }, waiting404)
-    }
-  }, [post])
-  return <>404 Not found.</>
+const Layout404 = () => {
+  return (
+    <div className='flex items-center justify-center min-h-[400px]'>
+      <div className='text-center'>
+        <h1 className='text-6xl font-black mb-4 text-black dark:text-white'>404</h1>
+        <p className='text-xl text-gray-600 dark:text-gray-400 mb-8'>Page not found</p>
+        <SmartLink href='/'>
+          <button className='bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-lg font-bold hover:opacity-80 transition-opacity'>
+            Back to Home
+          </button>
+        </SmartLink>
+      </div>
+    </div>
+  )
 }
 
 /**
  * 分类列表
- * @param {*} props
- * @returns
  */
 const LayoutCategoryIndex = props => {
   const { categoryOptions } = props
+  const { locale } = useGlobal()
+
   return (
-    <>
-      <div id='category-list' className='px-5 duration-200 flex flex-wrap'>
-        {categoryOptions?.map(category => {
-          return (
-            <SmartLink
-              key={category.name}
-              href={`/category/${category.name}`}
-              passHref
-              legacyBehavior>
-              <div
-                className={
-                  'hover:text-black dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600 px-5 cursor-pointer py-2 hover:bg-gray-100'
-                }>
-                <i className='mr-4 fas fa-folder' />
-                {category.name}({category.count})
-              </div>
+    <div className='max-w-[781px]'>
+      <h1 className='text-[53.28px] font-black text-black dark:text-white mb-8'>{locale.COMMON.CATEGORY}</h1>
+      <div className='space-y-4'>
+        {categoryOptions?.map(category => (
+          <div key={category.name} className='text-[20.72px]'>
+            <SmartLink href={`/category/${category.name}`} className='text-black dark:text-white hover:opacity-60 transition-opacity'>
+              {category.name} <span className='text-gray-600 dark:text-gray-400'>({category.count})</span>
             </SmartLink>
-          )
-        })}
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   )
 }
 
 /**
  * 标签列表
- * @param {*} props
- * @returns
  */
 const LayoutTagIndex = props => {
   const { tagOptions } = props
+  const { locale } = useGlobal()
+
   return (
-    <>
-      <div id='tags-list' className='px-5 duration-200 flex flex-wrap'>
-        {tagOptions.map(tag => {
-          return (
-            <div key={tag.name} className='p-2'>
-              <SmartLink
-                key={tag}
-                href={`/tag/${encodeURIComponent(tag.name)}`}
-                passHref
-                className={`cursor-pointer inline-block rounded hover:bg-gray-500 hover:text-white duration-200  mr-2 py-1 px-2 text-xs whitespace-nowrap dark:hover:text-white text-gray-600 hover:shadow-xl dark:border-gray-400 notion-${tag.color}_background dark:bg-gray-800`}>
-                <div className='font-light dark:text-gray-400'>
-                  <i className='mr-1 fas fa-tag' />{' '}
-                  {tag.name + (tag.count ? `(${tag.count})` : '')}{' '}
-                </div>
-              </SmartLink>
-            </div>
-          )
-        })}
+    <div className='max-w-[781px]'>
+      <h1 className='text-[53.28px] font-black text-black dark:text-white mb-8'>{locale.COMMON.TAGS}</h1>
+      <div className='flex flex-wrap gap-4'>
+        {tagOptions?.map(tag => (
+          <SmartLink
+            key={tag.name}
+            href={`/tag/${tag.name}`}
+            className='text-[20.72px] text-black dark:text-white hover:opacity-60 transition-opacity'>
+            #{tag.name} <span className='text-gray-600 dark:text-gray-400'>({tag.count})</span>
+          </SmartLink>
+        ))}
       </div>
-    </>
+    </div>
   )
 }
 

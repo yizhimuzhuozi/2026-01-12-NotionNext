@@ -1,73 +1,33 @@
-import { AdSlot } from '@/components/GoogleAdsense'
-import { siteConfig } from '@/lib/config'
-import { useGlobal } from '@/lib/global'
-import SmartLink from '@/components/SmartLink'
-import { useRouter } from 'next/router'
-import CONFIG from '../config'
 import { BlogItem } from './BlogItem'
 
 /**
- * 博客列表
- * @param {*} props
- * @returns
+ * 文章列表页组件
+ * 
+ * 功能:显示博客的所有文章列表,包括 Posts 标题、副标题和文章列表
+ * 样式:holmberg.io 极简风格,只显示标题和日期
+ * 
+ * @param {Array} posts - 文章列表数组,每个文章对象包含 title, href, date 等属性
  */
-export default function BlogListPage(props) {
-  const { page = 1, posts, postCount } = props
-  const router = useRouter()
-  const { NOTION_CONFIG } = useGlobal()
-  const POSTS_PER_PAGE = siteConfig('POSTS_PER_PAGE', null, NOTION_CONFIG)
-  const totalPage = Math.ceil(postCount / POSTS_PER_PAGE)
-  const currentPage = +page
-
-  // 博客列表嵌入广告
-  const TYPOGRAPHY_POST_AD_ENABLE = siteConfig(
-    'TYPOGRAPHY_POST_AD_ENABLE',
-    false,
-    CONFIG
-  )
-
-  const showPrev = currentPage > 1
-  const showNext = page < totalPage
-  const pagePrefix = router.asPath
-    .split('?')[0]
-    .replace(/\/page\/[1-9]\d*/, '')
-    .replace(/\/$/, '')
-    .replace('.html', '')
-
+export default function BlogListPage({ posts }) {
   return (
-    <div className='w-full md:pr-8 mb-12 px-5'>
-      <div id='posts-wrapper'>
-        {posts?.map((p, index) => (
-          <div key={p.id}>
-            {TYPOGRAPHY_POST_AD_ENABLE && (index + 1) % 3 === 0 && (
-              <AdSlot type='in-article' />
-            )}
-            {TYPOGRAPHY_POST_AD_ENABLE && index + 1 === 4 && <AdSlot type='flow' />}
-            <BlogItem post={p} />
-          </div>
-        ))}
+    <div className='w-full max-w-[781px]'>
+      {/* Posts 区域标题和副标题 */}
+      <div className='mb-4'> {/* 减小与文章列表的间距 */}
+        {/* 主标题 - 超大号加粗 */}
+        <h1 className='text-[54px] font-black text-black dark:text-white mb-0'>
+          Posts
+        </h1>
+        {/* 副标题 - 描述博客主题 */}
+        <p className='text-[22px] text-gray-600 dark:text-gray-400'>
+          关于生活、小技能、工作流程、设计与摄影等话题。
+        </p>
       </div>
 
-      <div className='flex justify-between text-xs mt-1'>
-        <SmartLink
-          href={{
-            pathname:
-              currentPage - 1 === 1
-                ? `${pagePrefix}/`
-                : `${pagePrefix}/page/${currentPage - 1}`,
-            query: router.query.s ? { s: router.query.s } : {}
-          }}
-          className={`${showPrev ? 'text-blue-600 border-b border-blue-400 visible ' : ' invisible bg-gray pointer-events-none '} no-underline pb-1 px-3`}>
-          NEWER POSTS <i className='fa-solid fa-arrow-left'></i>
-        </SmartLink>
-        <SmartLink
-          href={{
-            pathname: `${pagePrefix}/page/${currentPage + 1}`,
-            query: router.query.s ? { s: router.query.s } : {}
-          }}
-          className={`${showNext ? 'text-blue-600 border-b border-blue-400 visible' : ' invisible bg-gray pointer-events-none '} no-underline pb-1 px-3`}>
-          OLDER POSTS <i className='fa-solid fa-arrow-right'></i>
-        </SmartLink>
+      {/* 文章列表 */}
+      <div className='space-y-0'>
+        {posts?.map((post) => (
+          <BlogItem key={post.id} post={post} />
+        ))}
       </div>
     </div>
   )

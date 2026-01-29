@@ -1,101 +1,39 @@
-import LazyImage from '@/components/LazyImage'
-import NotionIcon from '@/components/NotionIcon'
-import NotionPage from '@/components/NotionPage'
-import TwikooCommentCount from '@/components/TwikooCommentCount'
-import { siteConfig } from '@/lib/config'
-import { useGlobal } from '@/lib/global'
-import { formatDateFmt } from '@/lib/utils/formatDate'
 import SmartLink from '@/components/SmartLink'
-import CONFIG from '../config'
 
-export const BlogItem = props => {
-  const { post } = props
-  const { NOTION_CONFIG } = useGlobal()
-  const showPageCover = siteConfig('TYPOGRAPHY_POST_COVER_ENABLE', false, CONFIG)
-  const showPreview =
-    siteConfig('POST_LIST_PREVIEW', false, NOTION_CONFIG) && post.blockMap
+/**
+ * 文章列表项组件
+ * 
+ * 功能:显示单个文章的标题和日期,点击可跳转到文章详情页
+ * 样式:参考 holmberg.io,极简风格,标题带下划线,hover 时下划线变色
+ * 
+ * 自定义提示:
+ * - 标题字体:在 style.js 中的 .article-title 类修改
+ * - 下划线粗细:修改 decoration-[2.6px] 的数值
+ * - hover 颜色:在 style.js 中的 .article-title:hover 修改
+ * - 日期颜色:修改下方 style={{ color: '#4e5c69' }} 的颜色值
+ * 
+ * @param {Object} post - 文章对象
+ * @param {string} post.title - 文章标题
+ * @param {string} post.href - 文章链接
+ * @param {Object} post.date - 文章日期对象
+ * @param {string} post.createdTime - 文章创建时间(备用)
+ */
+export const BlogItem = ({ post }) => {
   return (
-    <div key={post.id} className='h-42 mt-6 mb-10'>
-      {/* 文章标题 */}
-
-      <div className='flex'>
-        <div className='article-cover h-full'>
-          {/* 图片封面 */}
-          {showPageCover && (
-            <div className='overflow-hidden mr-2 w-56 h-full'>
-              <SmartLink href={post.href} passHref legacyBehavior>
-                <LazyImage
-                  src={post?.pageCoverThumbnail}
-                  className='w-56 h-full object-cover object-center group-hover:scale-110 duration-500'
-                />
-              </SmartLink>
-            </div>
-          )}
-        </div>
-
-        <article className='article-info'>
-          <h2 className='mb-2'>
-            <SmartLink
-              href={post.href}
-              className='text-xl underline decoration-2 font-bold text-[var(--primary-color)] dark:text-white dark:hover:bg-white dark:hover:text-[var(--primary-color)]  duration-200 transition-all rounded-sm'>
-              {siteConfig('POST_TITLE_ICON') && (
-                <NotionIcon icon={post.pageIcon} />
-              )}
-              {post.title}
-            </SmartLink>
+    <article className='border-b border-gray-200 dark:border-gray-700 py-6'>
+      <SmartLink href={post.href}>
+        <div className='cursor-pointer'>
+          {/* 文章标题 - 使用自定义字体,带下划线,hover 时下划线变色 */}
+          <h2 className='article-title text-[26.64px] tracking-[-0.4px] text-black dark:text-white mb-1 underline decoration-black dark:decoration-white decoration-[2.6px]'>
+            {post.title}
           </h2>
 
-          {/* 文章信息 */}
-          <header className='text-md text-[var(--primary-color)] dark:text-gray-300 flex-wrap flex items-center leading-6'>
-            <div className='space-x-2'>
-              <span className='text-sm'>
-                发布于
-                <SmartLink
-                  className='p-1 hover:text-red-400 transition-all duration-200'
-                  href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}>
-                  {post.date?.start_date || post.createdTime}
-                </SmartLink>
-              </span>
-            </div>
-
-            <div className='text-sm'>
-              {/* {post.category && (
-                <SmartLink href={`/category/${post.category}`} className='p-1'>
-                  {' '}
-                  <span className='hover:text-red-400 transition-all duration-200'>
-                    <i className='fa-regular fa-folder mr-0.5' />
-                    {post.category}
-                  </span>
-                </SmartLink>
-              )} */}
-              {post?.tags &&
-                post?.tags?.length > 0 &&
-                post?.tags.map(t => (
-                  <SmartLink
-                    key={t}
-                    href={`/tag/${t}`}
-                    className=' hover:text-red-400 transition-all duration-200'>
-                    <span> #{t}</span>
-                  </SmartLink>
-                ))}
-            </div>
-          </header>
-
-          <main className='text-[var(--primary-color)] dark:text-gray-300 line-clamp-4 overflow-hidden text-ellipsis relative leading-[1.7]'>
-            {!showPreview && (
-              <>
-                {post.summary}
-              </>
-            )}
-            {showPreview && post?.blockMap && (
-              <div className='line-clamp-4 overflow-hidden'>
-                <NotionPage post={post} />
-                <hr className='border-dashed py-4' />
-              </div>
-            )}
-          </main>
-        </article>
-      </div>
-    </div>
+          {/* 文章日期 - 使用特定颜色 #4e5c69,间距更紧凑 */}
+          <time className='text-[20.72px] block' style={{ color: '#4e5c69' }}>
+            {post.date?.start_date || post.createdTime}
+          </time>
+        </div>
+      </SmartLink>
+    </article>
   )
 }
