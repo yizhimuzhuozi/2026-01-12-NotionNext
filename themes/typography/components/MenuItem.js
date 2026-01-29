@@ -41,20 +41,20 @@ export const MenuItem = ({ link }) => {
             {/* 有子菜单 - 显示下拉按钮 */}
             {hasSubMenu && (
                 <>
-                    <div className='font-bold text-base text-black dark:text-white px-2 py-1 rounded-lg hover:bg-[#e4e7e8] dark:hover:bg-gray-700 transition-all cursor-pointer'>
+                    <div className='font-bold text-base text-black dark:text-white px-2 py-0 rounded-lg hover:bg-[#41c3f7] dark:hover:bg-gray-700 transition-all cursor-pointer'>
                         {link.name}
                     </div>
 
                     {/* 下拉菜单 */}
                     {showDropdown && (
-                        <div className='absolute top-full left-0 mt-1 min-w-[160px] bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50'>
+                        <div className='absolute top-full left-0 min-w-[140px] bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50'>
                             {link.subMenus.map((subLink, index) => (
                                 <SmartLink
                                     key={index}
                                     href={subLink.href}
                                     target={subLink?.target}
                                 >
-                                    <div className='px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-[#e4e7e8] dark:hover:bg-gray-700 transition-colors cursor-pointer'>
+                                    <div className='px-4 py-1.5 text-[18px] font-semibold text-gray-700 dark:text-gray-300 hover:bg-[#41c3f7] dark:hover:bg-gray-700 transition-colors cursor-pointer'>
                                         {subLink.title}
                                     </div>
                                 </SmartLink>

@@ -10,15 +10,15 @@ import { BlogItem } from './BlogItem'
  */
 export default function BlogListPage({ posts }) {
   return (
-    <div className='w-full max-w-[781px]'>
+    <div className='w-full max-w-[790px]'>
       {/* Posts 区域标题和副标题 */}
-      <div className='mb-4'> {/* 减小与文章列表的间距 */}
+      <div className='mb-1'> {/* 减小与文章列表的间距 */}
         {/* 主标题 - 超大号加粗 */}
         <h1 className='text-[54px] font-black text-black dark:text-white mb-0'>
           Posts
         </h1>
         {/* 副标题 - 描述博客主题 */}
-        <p className='text-[22px] text-gray-600 dark:text-gray-400'>
+        <p className='text-[20px] text-gray-600 dark:text-gray-400 font-semibold'>
           关于生活、小技能、工作流程、设计与摄影等话题。
         </p>
       </div>
