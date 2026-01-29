@@ -130,6 +130,277 @@ const Style = () => {
         -ms-overflow-style: none;  /* IE 和 Edge */
         scrollbar-width: none;      /* Firefox */
       }
+
+      /* ==================== Notion 文章内容样式覆盖 ==================== */
+      
+      /* 正文段落 - holmberg.io 风格 */
+      #theme-typography .notion-text,
+      #theme-typography .notion p {
+        font-size: 20px !important;
+        line-height: 1.65 !important;
+        color: #000 !important;
+        margin-bottom: 1.5em !important;
+      }
+
+      /* 暗色模式正文 */
+      .dark #theme-typography .notion-text,
+      .dark #theme-typography .notion p {
+        color: #fff !important;
+      }
+
+
+      /* 链接样式 - 只针对正文普通链接,排除书签、外部块、文件下载 */
+      /* 使用 .notion-link 精确定位,排除特殊块 */
+      #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link) {
+        color: #000 !important;
+        text-decoration: underline !important;
+        text-decoration-thickness: 2.6px !important;
+        text-decoration-color: #000 !important;
+        text-decoration-skip-ink: auto !important;
+        border-bottom: none !important; /* 移除 Notion 默认的 border-bottom,避免双重下划线 */
+        transition: text-decoration-color 0.2s ease !important;
+      }
+
+      #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link):hover {
+        text-decoration-color: #41c3f7 !important;
+      }
+
+      /* 暗色模式链接 */
+      .dark #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link) {
+        color: #fff !important;
+        text-decoration-color: #fff !important;
+      }
+
+      .dark #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link):hover {
+        text-decoration-color: #41c3f7 !important;
+      }
+
+
+      /* ==================== 标题样式 ==================== */
+      
+      /* H1 标题 */
+      #theme-typography .notion h1 {
+        font-size: 40px !important;
+        font-weight: 900 !important;
+        line-height: 1.2 !important;
+        color: #000 !important;
+        margin-top: 2em !important;
+        margin-bottom: 0.5em !important;
+      }
+
+      /* H2 标题 */
+      #theme-typography .notion h2 {
+        font-size: 32px !important;
+        font-weight: 800 !important;
+        line-height: 1.3 !important;
+        color: #000 !important;
+        margin-top: 1.8em !important;
+        margin-bottom: 0.5em !important;
+      }
+
+      /* H3 标题 */
+      #theme-typography .notion h3 {
+        font-size: 26px !important;
+        font-weight: 700 !important;
+        line-height: 1.4 !important;
+        color: #000 !important;
+        margin-top: 1.6em !important;
+        margin-bottom: 0.5em !important;
+      }
+
+      /* 暗色模式标题 */
+      .dark #theme-typography .notion h1,
+      .dark #theme-typography .notion h2,
+      .dark #theme-typography .notion h3,
+      .dark #theme-typography .notion h4,
+      .dark #theme-typography .notion h5,
+      .dark #theme-typography .notion h6 {
+        color: #fff !important;
+      }
+
+      /* ==================== 代码块样式 ==================== */
+      
+      /* 代码块容器 */
+      #theme-typography .notion-code,
+      #theme-typography pre {
+        background: #2d2d2d !important;
+        border-radius: 12px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        position: relative !important;
+        overflow-x: auto !important;
+        border: none !important;
+        box-shadow: none !important;
+        
+        /* 隐藏滚动条但保持滚动功能 */
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE 和 Edge */
+      }
+
+      /* 代码块外层容器 - 只移除阴影 */
+      #theme-typography .code-toolbar {
+        box-shadow: none !important; /* 移除 Tailwind 的 box-shadow 变量 */
+      }
+
+      /* WebKit 浏览器隐藏滚动条 */
+      #theme-typography .notion-code::-webkit-scrollbar,
+      #theme-typography pre::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      /* 代码块对齐修正 */
+      
+      /* 嵌套在列表内的代码块 (如 magnet 链接) */
+      /* 结构: ul > ul > .code-toolbar > pre */
+      /* Notion 中这些代码块缩进在父列表项下方,与列表文本对齐 */
+      /* 使用负左边距抵消嵌套列表的 padding,使代码块与外层列表文本对齐 */
+      #theme-typography .notion-list .notion-list .code-toolbar,
+      #theme-typography .notion-list .notion-list .code-toolbar pre,
+      #theme-typography .notion-list .notion-list .notion-code {
+        margin-left: -1.5em !important;
+        /* 增加宽度补偿负边距,避免右侧出现空白 */
+        width: calc(100% + 1.5em) !important;
+      }
+      
+      /* 独立的代码块 (如 irm 脚本) */
+      /* 这些代码块在 Notion 中是完整宽度,与页面内容区域左右完美对齐 */
+      /* 不需要任何额外的左边距 */
+
+      /* 代码文本 */
+      #theme-typography .notion-code code,
+      #theme-typography pre code {
+        background: transparent !important;
+        color: #e4e7e8 !important;
+        font-family: 'Monaco', 'Menlo', 'Consolas', monospace !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        padding: 0 !important;
+      }
+
+      /* 行内代码 */
+      #theme-typography .notion code:not(pre code) {
+        background: #E4E7EA !important; /* 浅灰背景 - Notion 风格 */
+        color: #2d2d2d !important; 
+        padding: 3px 6px !important;
+        border-radius: 3px !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+      }
+
+      .dark #theme-typography .notion code:not(pre code) {
+        background: #E4E7EA !important;
+        color: #2d2d2d !important;
+        font-weight: 500 !important;
+      }
+
+      /* 复制按钮样式 */
+      #theme-typography .notion-code .copy-button,
+      #theme-typography pre .copy-button {
+        position: absolute !important;
+        top: 12px !important;
+        right: 12px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        padding: 8px 12px !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        transition: background 0.2s ease !important;
+        border: none !important;
+        color: #fff !important;
+        font-size: 12px !important;
+      }
+
+      #theme-typography .notion-code .copy-button:hover,
+      #theme-typography pre .copy-button:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+
+      /* ==================== 列表样式 ==================== */
+      
+      /* 列表容器 - ul/ol */
+      #theme-typography .notion ul,
+      #theme-typography .notion ol {
+        font-size: 20px !important;
+        line-height: 1 !important; /* 与 holmberg.io 一致 */
+        padding-left: 1.5em !important; /* 缩进距离 */
+      }
+
+      /* 有序列表数字加粗 */
+      #theme-typography .notion ol li::marker {
+        font-weight: 700 !important; /* 数字加粗 */
+      }
+
+      /* 列表项 - li */
+      #theme-typography .notion li {
+        margin-top: 0.1em !important; /* 列表项上方间距 - 更紧凑 */
+        margin-bottom: 0.1em !important; /* 列表项下方间距 - 更紧凑 */
+      }
+
+      /* ==================== 引用块样式 ==================== */
+      
+      #theme-typography .notion blockquote {
+        border-left: 4px solid #41c3f7 !important;
+        padding-left: 20px !important;
+        margin: 24px 0 !important;
+        font-size: 20px !important;
+        line-height: 1.65 !important;
+        color: #3e4c59 !important;
+        font-style: italic !important;
+      }
+
+      .dark #theme-typography .notion blockquote {
+        color: #9ca3af !important;
+      }
+
+      /* ==================== 分割线样式 ==================== */
+      
+      #theme-typography .notion hr {
+        border: none !important;
+        border-top: 1px solid #e5e7eb !important;
+        margin: 48px 0 !important;
+      }
+
+      .dark #theme-typography .notion hr {
+        border-top-color: #374151 !important;
+      }
+
+      /* ==================== 图片样式 ==================== */
+      
+      #theme-typography .notion img {
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        margin: 24px 0 !important;
+      }
+
+      /* ==================== 表格样式 ==================== */
+      
+      #theme-typography .notion table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin: 24px 0 !important;
+      }
+
+      #theme-typography .notion th,
+      #theme-typography .notion td {
+        border: 1px solid #e5e7eb !important;
+        padding: 12px !important;
+        text-align: left !important;
+        font-size: 18px !important;
+      }
+
+      #theme-typography .notion th {
+        background: #f9fafb !important;
+        font-weight: 700 !important;
+      }
+
+      .dark #theme-typography .notion th,
+      .dark #theme-typography .notion td {
+        border-color: #374151 !important;
+      }
+
+      .dark #theme-typography .notion th {
+        background: #1f2937 !important;
+      }
     `}</style>
   )
 }
