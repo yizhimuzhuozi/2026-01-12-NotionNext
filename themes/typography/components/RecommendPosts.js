@@ -1,32 +1,36 @@
 import SmartLink from '@/components/SmartLink'
-import { useGlobal } from '@/lib/global'
-import CONFIG from '../config'
 import { siteConfig } from '@/lib/config'
+import CONFIG from '../config'
 
 /**
- * 展示文章推荐
+ * 文章推荐组件 - holmberg.io 风格
+ * 
+ * 在文章底部显示一篇相关推荐文章
+ * 极简设计,只显示 "Read next:" 和文章标题
  */
 const RecommendPosts = ({ recommendPosts }) => {
-  const { locale } = useGlobal()
   if (!siteConfig('TYPOGRAPHY_ARTICLE_RECOMMEND_POSTS', null, CONFIG) || !recommendPosts || recommendPosts.length < 1) {
-    return <></>
+    return null
   }
 
+  // 只显示第一篇推荐
+  const post = recommendPosts[0]
+
   return (
-    <div className="pt-2 border pl-4 py-2 my-4 dark:text-gray-300 ">
-       <div className="mb-2 font-bold text-lg">{locale.COMMON.RELATE_POSTS} :</div>
-        <ul className="font-light text-sm">
-          {recommendPosts.map(post => (
-            <li className="py-1" key={post.id}>
-              <SmartLink href={`/${post.slug}`} className="cursor-pointer hover:underline">
+    <div className='mt-12 pt-8 border-t border-gray-200 dark:border-gray-700'>
+      {/* "Read next:" 标题 */}
+      <h4 className='text-[20px] text-gray-600 dark:text-gray-400 mb-2'>
+        Read next:
+      </h4>
 
-                {post.title}
-
-              </SmartLink>
-            </li>
-          ))}
-        </ul>
+      {/* 推荐文章标题 */}
+      <SmartLink href={`/${post.slug}`}>
+        <h3 className='text-[26px] font-black tracking-[-0.4px] text-black dark:text-white underline decoration-black dark:decoration-white decoration-[2.6px] hover:decoration-[#41c3f7] transition-all cursor-pointer'>
+          {post.title}
+        </h3>
+      </SmartLink>
     </div>
   )
 }
+
 export default RecommendPosts

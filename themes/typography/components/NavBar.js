@@ -53,7 +53,7 @@ export default function NavBar(props) {
           </SmartLink>
 
           {/* 第二行:黑色圆角徽章描述 - hover 时背景变天蓝色 添加背景颜色 hover:bg-[#41c3f7] */}
-          <span className='text-sm font-bold bg-black dark:bg-white text-white dark:text-black px-2 py-0 rounded inline-block w-fit hover:text-white transition-colors cursor-pointer'>
+          <span className='text-sm font-extrabold bg-black dark:bg-white text-white dark:text-black px-2 py-0 rounded inline-block w-fit hover:text-white transition-colors cursor-pointer'>
             一个喜欢折腾的设计师博客
           </span>
         </div>

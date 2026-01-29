@@ -15,6 +15,7 @@ import BlogListPage from './components/BlogListPage'
 import Footer from './components/Footer'
 import JumpToTopButton from './components/JumpToTopButton'
 import NavBar from './components/NavBar'
+import RecommendPosts from './components/RecommendPosts'
 import CONFIG from './config'
 import { Style } from './style'
 
@@ -77,8 +78,9 @@ const LayoutIndex = props => {
  * 文章列表页
  */
 const LayoutPostList = props => {
-  const { posts } = props
-  return <BlogListPage posts={posts} />
+  const { posts, page, postCount } = props
+  const totalPage = Math.ceil(postCount / siteConfig('POSTS_PER_PAGE', 12))
+  return <BlogListPage posts={posts} page={page} totalPage={totalPage} />
 }
 
 /**
@@ -99,7 +101,7 @@ const LayoutArchive = props => {
  * 文章详情页
  */
 const LayoutSlug = props => {
-  const { post, lock, validPassword } = props
+  const { post, lock, validPassword, recommendPosts } = props
 
   return (
     <div className='max-w-[781px]'>
@@ -114,6 +116,9 @@ const LayoutSlug = props => {
           <div className='prose prose-lg max-w-none'>
             <NotionPage post={post} />
           </div>
+
+          {/* 相关文章推荐 */}
+          <RecommendPosts recommendPosts={recommendPosts} />
 
           {/* 评论区 */}
           <div className='mt-16'>

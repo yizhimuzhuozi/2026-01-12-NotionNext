@@ -1,4 +1,5 @@
 import { BlogItem } from './BlogItem'
+import PaginationSimple from './PaginationSimple'
 
 /**
  * 文章列表页组件
@@ -7,8 +8,10 @@ import { BlogItem } from './BlogItem'
  * 样式:holmberg.io 极简风格,只显示标题和日期
  * 
  * @param {Array} posts - 文章列表数组,每个文章对象包含 title, href, date 等属性
+ * @param {number} page - 当前页码
+ * @param {number} totalPage - 总页数
  */
-export default function BlogListPage({ posts }) {
+export default function BlogListPage({ posts, page = 1, totalPage = 1 }) {
   return (
     <div className='w-full max-w-[790px]'>
       {/* Posts 区域标题和副标题 */}
@@ -29,6 +32,9 @@ export default function BlogListPage({ posts }) {
           <BlogItem key={post.id} post={post} />
         ))}
       </div>
+
+      {/* 分页导航 - 只在有多页时显示 */}
+      {totalPage > 1 && <PaginationSimple page={page} totalPage={totalPage} />}
     </div>
   )
 }

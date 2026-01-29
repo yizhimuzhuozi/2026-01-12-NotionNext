@@ -24,12 +24,12 @@ export const BlogItem = ({ post }) => {
       <SmartLink href={post.href}>
         <div className='cursor-pointer'>
           {/* 文章标题 - 使用自定义字体,带下划线,hover 时下划线变色 */}
-          <h2 className='article-title text-[26.64px] tracking-[-0.4px] text-black dark:text-white mb-1 underline decoration-black dark:decoration-white decoration-[2.6px]'>
+          <h2 className='article-title text-[26px] tracking-[-0.6px] text-black dark:text-white mb-1 underline decoration-black dark:decoration-white decoration-[2px]'>
             {post.title}
           </h2>
 
-          {/* 文章日期 - 使用特定颜色 #4e5c69,间距更紧凑 */}
-          <time className='text-[20.72px] block' style={{ color: '#4e5c69' }}>
+          {/* 文章日期 - 使用特定颜色 #3e4c59,间距更紧凑 */}
+          <time className='text-[16px] block font-bold' style={{ color: '#3e4c59ce' }}>
             {post.date?.start_date || post.createdTime}
           </time>
         </div>
