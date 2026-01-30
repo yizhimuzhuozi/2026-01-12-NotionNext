@@ -317,7 +317,7 @@ const Style = () => {
       #theme-typography .notion ul,
       #theme-typography .notion ol {
         font-size: 20px !important;
-        line-height: 1 !important; /* 与 holmberg.io 一致 */
+      /*  line-height: 1 !important;  与 holmberg.io 一致 */
         padding-left: 1.5em !important; /* 缩进距离 */
       }
 
