@@ -27,7 +27,7 @@ const BLOG = {
   CUSTOM_MENU: process.env.NEXT_PUBLIC_CUSTOM_MENU || true, // 支持Menu 类型，从3.12.0版本起，各主题将逐步支持灵活的二级菜单配置，替代了原来的Page类型，此配置是试验功能、默认关闭。
 
   AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || 'Tim', // 您的昵称 例如 tangly1024
-  BIO: process.env.NEXT_PUBLIC_BIO || '一个喜欢折腾的平面设计师博客。', // 作者简介
+  BIO: process.env.NEXT_PUBLIC_BIO || '一个喜欢折腾的设计师博客。', // 作者简介
   LINK: process.env.NEXT_PUBLIC_LINK || 'https://00000520.xyz', // 网站地址
   KEYWORDS: process.env.NEXT_PUBLIC_KEYWORD || '阿昆,阿昆设计,阿昆设计师,阿昆是谁,阿昆平面设计,博客,00000520,time,TIME,akuntime,Tim,notion,blog', // 网站关键词 英文逗号隔开
 
@@ -436,7 +436,7 @@ const BLOG = {
   // <---- 评论插件
 
   // ----> 站点统计
-  ANALYTICS_VERCEL: process.env.NEXT_PUBLIC_ANALYTICS_VERCEL || false, // vercel自带的统计 https://vercel.com/docs/concepts/analytics/quickstart https://github.com/tangly1024/NotionNext/issues/897
+  ANALYTICS_VERCEL: process.env.NEXT_PUBLIC_ANALYTICS_VERCEL || true, // vercel自带的统计 https://vercel.com/docs/concepts/analytics/quickstart https://github.com/tangly1024/NotionNext/issues/897
   ANALYTICS_BUSUANZI_ENABLE:
     process.env.NEXT_PUBLIC_ANALYTICS_BUSUANZI_ENABLE || true, // 展示网站阅读量、访问数 see http://busuanzi.ibruce.info/
   ANALYTICS_BAIDU_ID: process.env.NEXT_PUBLIC_ANALYTICS_BAIDU_ID || '775bf96a26c6ad70910f20bf24ecc8a6', // e.g 只需要填写百度统计的id，[baidu_id] -> https://hm.baidu.com/hm.js?[baidu_id]

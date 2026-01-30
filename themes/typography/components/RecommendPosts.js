@@ -20,7 +20,7 @@ const RecommendPosts = ({ recommendPosts }) => {
     <div className='mt-12 pt-8 border-t border-gray-200 dark:border-gray-700'>
       {/* "Read next:" 标题 */}
       <h4 className='text-[20px] text-gray-600 dark:text-gray-400 mb-2'>
-        Read next:
+        接下来阅读：
       </h4>
 
       {/* 推荐文章标题 */}

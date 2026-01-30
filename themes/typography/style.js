@@ -588,6 +588,31 @@ const Style = () => {
         border-color: #444 !important; /* 深色模式表头边框使用深灰色 */
       }
 
+      /* ==================== 评论区样式 ==================== */
+      
+      /* Twikoo, Waline, Artalk 等评论插件字体覆盖 */
+      #theme-typography .twikoo .tk-content,
+      #theme-typography .twikoo .tk-preview-container,
+      #theme-typography .waline-comment-content,
+      #theme-typography .atk-content {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+        color: #333 !important;
+      }
+
+      /* 评论区深色模式适配 */
+      .dark #theme-typography .twikoo .tk-content,
+      .dark #theme-typography .twikoo .tk-preview-container,
+      .dark #theme-typography .waline-comment-content,
+      .dark #theme-typography .atk-content {
+        color: #ddd !important;
+      }
+      
+      /* Giscus 字体调整 (通过 iframe 注入可能有跨域限制，但也尝试覆盖外部容器) */
+      #theme-typography #giscus-container {
+        font-size: 15px !important;
+      }
+
       /* ==================== 移动端响应式适配 ==================== */
       
       @media (max-width: 768px) {

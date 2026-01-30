@@ -26,7 +26,7 @@ export default function Footer() {
     { name: 'Bilibili', url: siteConfig('CONTACT_BILIBILI') },
     { name: 'YouTube', url: siteConfig('CONTACT_YOUTUBE') },
     { name: '小红书', url: siteConfig('CONTACT_XIAOHONGSHU') },
-    { name: 'Email', url: siteConfig('CONTACT_EMAIL') ? `mailto:${siteConfig('CONTACT_EMAIL')}` : '' }
+    { name: 'Email', url: 'mailto:czk66337@gmail.com' }
   ].filter(link => link.url) // 只显示已配置的链接
 
   return (
