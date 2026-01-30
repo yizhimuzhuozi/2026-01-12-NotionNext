@@ -4,7 +4,7 @@
  */
 export default function ArticleInfo({ post }) {
   return (
-    <header className='mb-12 max-w-[780px]'>
+    <header className='mb-6 max-w-[780px]'>
       {/* 日期 */}
       {post?.date?.start_date && (
         <time className='text-[16px] block font-bold dark:text-gray-400 block mb-0'>

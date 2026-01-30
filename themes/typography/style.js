@@ -421,7 +421,7 @@ const Style = () => {
       #theme-typography .notion hr {
         border: none !important;
         border-top: 1px solid #e5e7eb !important;
-        margin: 48px 0 !important;
+        margin: 20px 0 !important;
       }
 
       .dark #theme-typography .notion hr {
@@ -441,6 +441,7 @@ const Style = () => {
         border-radius: 12px !important; /* 圆角 */
         margin: 4px 0 !important; /* 原 16px,减半 */
       }
+      
 
       /* 列表内的嵌套列表 - 与列表文字对齐 */
       #theme-typography .notion-list .notion-list {
