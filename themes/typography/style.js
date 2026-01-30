@@ -139,7 +139,7 @@ const Style = () => {
         font-size: 20px !important;
         line-height: 1.65 !important;
         color: #000 !important;
-        margin-bottom: 1.5em !important;
+        margin-bottom: 0.4em !important;
       }
 
       /* 暗色模式正文 */
@@ -178,34 +178,31 @@ const Style = () => {
 
       /* ==================== 标题样式 ==================== */
       
-      /* H1 标题 */
-      #theme-typography .notion h1 {
-        font-size: 40px !important;
+      /* Notion 一级标题 (渲染为 h2.notion-h1) */
+      #theme-typography h2.notion-h1 {
+        font-size: 32px !important; /* 1.6x 正文 */
         font-weight: 900 !important;
-        line-height: 1.2 !important;
-        color: #000 !important;
-        margin-top: 2em !important;
-        margin-bottom: 0.5em !important;
-      }
-
-      /* H2 标题 */
-      #theme-typography .notion h2 {
-        font-size: 32px !important;
-        font-weight: 800 !important;
         line-height: 1.3 !important;
         color: #000 !important;
-        margin-top: 1.8em !important;
-        margin-bottom: 0.5em !important;
+        margin-top: 1em !important; /* 从2em减半,减小与前面内容的距离 */
       }
 
-      /* H3 标题 */
-      #theme-typography .notion h3 {
-        font-size: 26px !important;
-        font-weight: 700 !important;
+      /* Notion 二级标题 (渲染为 h3.notion-h2) */
+      #theme-typography h3.notion-h2 {
+        font-size: 26px !important; /* 1.3x 正文 */
+        font-weight: 800 !important;
         line-height: 1.4 !important;
         color: #000 !important;
-        margin-top: 1.6em !important;
-        margin-bottom: 0.5em !important;
+        margin-top: 0.8em !important; /* 从1.6em减半,减小与前面内容的距离 */
+      }
+
+      /* Notion 三级标题 (H3 - 渲染为 h4.notion-h3) */
+      #theme-typography h4.notion-h3 {
+        font-size: 22px !important; /* 字体大小: 正文的1.1倍 (正文20px × 1.1 = 22px) */
+        font-weight: 700 !important; /* 字重: 700 (粗体),区别于正文的400 */
+        line-height: 1.5 !important; /* 行高: 1.5倍字体大小,提升可读性 */
+        color: #000 !important; /* 文字颜色: 纯黑色,增强层级对比 */
+        margin-top: 1.4em !important; /* 上间距: 1.4倍字体大小,与前面内容分隔 */
       }
 
       /* 暗色模式标题 */
@@ -226,7 +223,7 @@ const Style = () => {
         background: #2d2d2d !important;
         border-radius: 12px !important;
         padding: 24px 28px !important;
-        margin: 24px 0 !important;
+        margin: 12px 0 !important; /* 从24px减半,减小代码块上下间距 */
         position: relative !important;
         overflow-x: auto !important;
         border: none !important;
@@ -257,9 +254,9 @@ const Style = () => {
       #theme-typography .notion-list .notion-list .code-toolbar,
       #theme-typography .notion-list .notion-list .code-toolbar pre,
       #theme-typography .notion-list .notion-list .notion-code {
-        margin-left: -1.5em !important;
+        /* margin-left: -1.5em !important; */
         /* 增加宽度补偿负边距,避免右侧出现空白 */
-        width: calc(100% + 1.5em) !important;
+        /* width: calc(100% + 1.5em) !important; */
       }
       
       /* 独立的代码块 (如 irm 脚本) */
@@ -351,6 +348,60 @@ const Style = () => {
         color: #9ca3af !important;
       }
 
+      /* ==================== 标注块样式 ==================== */
+      
+      /* Notion Callout - 默认风格 */
+      #theme-typography .notion-callout {
+        background: #f7f6f3 !important; /* Notion 默认浅灰背景 */
+        border: none !important; /* 移除边框 */
+        border-radius: 12px !important;
+        padding: 16px 16px 16px 16px !important; /* 上右下左,减小底部内边距 */
+        margin: 4px 0 !important;
+        align-items: flex-start !important; /* 改为顶部对齐而不是居中 */
+      }
+
+      /* Callout 图标 */
+      #theme-typography .notion-callout .notion-page-icon-inline {
+        margin-top: 12px !important;
+        align-self: flex-start !important;
+      }
+
+      /* Callout 文字区域 */
+      #theme-typography .notion-callout-text {
+        margin-left: 8px !important; /* 图标和文字间距 */
+      }
+
+      /* Callout 内部第一个元素上间距 */
+      #theme-typography .notion-callout-text > *:first-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      /* Callout 内部段落间距 */
+      #theme-typography .notion-callout-text p {
+        margin-bottom: 0em !important;
+        margin-top: 0.5em !important;
+      }
+
+      #theme-typography .notion-callout-text p:first-child {
+        margin-top: 0 !important;
+      }
+
+      /* Callout 最后一个段落底部间距 */
+      #theme-typography .notion-callout-text p:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .dark #theme-typography .notion-callout {
+        background: rgba(255, 255, 255, 0.055) !important;
+        border: none !important;
+      }
+
+      /* Callout 后面的元素间距 */
+      #theme-typography .notion-callout + * {
+        margin-top: 0.5em !important;
+      }
+
       /* ==================== 分割线样式 ==================== */
       
       #theme-typography .notion hr {
@@ -365,11 +416,77 @@ const Style = () => {
 
       /* ==================== 图片样式 ==================== */
       
+      /* 图片父容器间距 */
+      #theme-typography .notion-asset-wrapper {
+        margin: 2px 0 !important; /* 原 8px,减半 */
+      }
+
       #theme-typography .notion img {
         max-width: 100% !important;
         height: auto !important;
+        border-radius: 12px !important; /* 圆角 */
+        margin: 4px 0 !important; /* 原 16px,减半 */
+      }
+
+      /* 列表内的嵌套列表 - 与列表文字对齐 */
+      #theme-typography .notion-list .notion-list {
+        padding-left: 0 !important; /* 去除默认padding,使内容(图片/代码块)与文字对齐 */
+      }
+
+      /* ==================== 移除Notion颜色背景 ==================== */
+      
+      /* 移除蓝色背景(用于GitHub链接等) */
+      #theme-typography .notion-blue_background {
+        background-color: transparent !important;
+      }
+
+      /* 移除默认背景(灰色) */
+      #theme-typography .notion-default_background {
+        background-color: transparent !important;
+      }
+
+      /* ==================== GitHub外部链接样式优化 ==================== */
+      
+      /* 强制缩小链接容器高度并实现完美垂直居中 */
+      #theme-typography .notion-external-mention {
+        height: 1.4em !important;        /* 强制高度跟随字体大小 */
+        display: inline-flex !important;
+        align-items: center !important;  /* 内部内容垂直居中 */
+        vertical-align: middle !important; /* 整个块在行中文本居中 */
+        top: -2px !important;               /* 移除原本向下的3px偏移 */
+        padding: 0 4px !important;       /* 左右留一点边距 */
+        margin: 0 2px !important;
+        line-height: 1 !important;
+      }
+
+      /* 优化GitHub图标对齐 */
+      #theme-typography .notion-external-mention .notion-external-image {
+        width: 1em !important;
+        height: 1em !important;
+        margin-right: 4px !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      /* 修复文字描述容器 */
+      #theme-typography .notion-external-mention .notion-external-description {
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      /* 关键:移除文字底边框并重置文字高度 */
+      #theme-typography .notion-external-mention .notion-external-title {
+        font-size: 1em !important;
+        line-height: 1 !important;
+        border-bottom: none !important;  /* 必须移除!否则文字视觉上会偏下 */
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* 优化hover效果 - 正确的选择器 */
+      #theme-typography .notion-external:hover {
+        background: #41c3f7 !important;
         border-radius: 8px !important;
-        margin: 24px 0 !important;
       }
 
       /* ==================== 表格样式 ==================== */

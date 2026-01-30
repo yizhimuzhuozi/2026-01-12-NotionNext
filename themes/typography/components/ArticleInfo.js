@@ -13,7 +13,7 @@ export default function ArticleInfo({ post }) {
       )}
 
       {/* 大标题 */}
-      <h1 className='text-[54px] font-black leading-[58px] tracking-tight text-black dark:text-white'>
+      <h1 className='text-[54px] font-black leading-[58px] tracking-tight'>
         {post?.title}
       </h1>
 
