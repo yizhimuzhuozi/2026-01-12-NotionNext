@@ -26,10 +26,10 @@ const JumpToTopButton = () => {
   }, [show])
 
   return <div title={locale.POST.TOP}
-        className={(show ? ' opacity-100 ' : 'invisible  opacity-0') + ' transition-all duration-300 flex items-center justify-center cursor-pointer bg-black h-10 w-10 bg-opacity-40 rounded-sm'}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-    ><i className='fas fa-angle-up text-white ' />
-    </div>
+    className={(show ? ' opacity-100 ' : 'invisible  opacity-0') + ' transition-all duration-300 flex items-center justify-center cursor-pointer bg-black h-4 w-4 bg-opacity-40 rounded-sm'}
+    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  ><i className='fas fa-angle-up text-white text-sm' />
+  </div>
 }
 
 export default JumpToTopButton

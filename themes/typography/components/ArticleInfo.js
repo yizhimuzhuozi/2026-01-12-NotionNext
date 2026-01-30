@@ -12,8 +12,8 @@ export default function ArticleInfo({ post }) {
         </time>
       )}
 
-      {/* 大标题 */}
-      <h1 className='text-[54px] font-black leading-[58px] tracking-tight'>
+      {/* 大标题 - 响应式: 移动端36px, 桌面端54px */}
+      <h1 className='text-4xl md:text-[54px] font-black leading-tight md:leading-[58px] tracking-tight'>
         {post?.title}
       </h1>
 

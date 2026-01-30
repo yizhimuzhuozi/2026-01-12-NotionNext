@@ -40,11 +40,11 @@ export default function NavBar(props) {
   const navLinks = useCustomMenu && hasCustomMenu ? customMenu : defaultLinks
 
   return (
-    <header className='w-full py-[60px] px-20'> {/* 上下60px,左右80px间距 */}
-      {/* 主容器 - 左右两端对齐布局 */}
-      <div className='w-full flex items-center justify-between'>
-        {/* 左侧区域:网站名称和描述徽章(两行显示) */}
-        <div className='flex flex-col gap-1'> {/* 竖向排列,间距1,更紧凑 */}
+    <header className='w-full py-[60px] px-4 md:px-10 lg:px-20'> {/* 响应式padding: 手机16px, 平板40px, 桌面80px */}
+      {/* 主容器 - 移动端居中竖向,桌面端左右布局 */}
+      <div className='w-full flex flex-col md:flex-row items-center md:justify-between gap-4'>
+        {/* 左侧区域:网站名称和描述徽章 - 移动端居中,桌面端左对齐 */}
+        <div className='flex flex-col gap-1 items-center md:items-start'> {/* 竖向排列,间距1 */}
           {/* 第一行:网站名称 - hover 时显示天蓝色背景 */}
           <SmartLink href='/'>
             <span className='text-[30px] font-extrabold text-black dark:text-white hover:bg-[#41c3f7] hover:text-black dark:hover:text-black transition-colors cursor-pointer px-1'>
@@ -52,13 +52,13 @@ export default function NavBar(props) {
             </span>
           </SmartLink>
 
-          {/* 第二行:黑色圆角徽章描述 - hover 时背景变天蓝色 添加背景颜色 hover:bg-[#41c3f7] */}
+          {/* 第二行:黑色圆角徽章描述 */}
           <span className='text-sm font-extrabold bg-black dark:bg-white text-white dark:text-black px-2 py-0 rounded inline-block w-fit hover:text-white transition-colors cursor-pointer'>
             一个喜欢折腾的设计师博客
           </span>
         </div>
 
-        {/* 右侧区域:导航链接 */}
+        {/* 右侧区域:导航链接 - 移动端居中,桌面端右对齐 */}
         <nav className='flex items-center gap-2'> {/* 横向排列,间距2 */}
           {navLinks?.filter(link => link.show !== false).map((link, index) => (
             <MenuItem key={index} link={link} />

@@ -40,8 +40,8 @@ const LayoutBase = props => {
       {/* 顶部导航 */}
       <NavBar {...props} />
 
-      {/* 主内容区 */}
-      <main className='flex-1 w-full px-20'>
+      {/* 主内容区 - 响应式padding: 手机16px, 平板40px, 桌面80px */}
+      <main className='flex-1 w-full px-4 md:px-10 lg:px-20'>
         <div className='w-full'>
           {onLoading ? (
             <div className='flex items-center justify-center min-h-[500px]'>

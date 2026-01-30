@@ -25,14 +25,13 @@ export default function Footer() {
     { name: 'Instagram', url: siteConfig('CONTACT_INSTAGRAM') },
     { name: 'Bilibili', url: siteConfig('CONTACT_BILIBILI') },
     { name: 'YouTube', url: siteConfig('CONTACT_YOUTUBE') },
-    { name: 'Weibo', url: siteConfig('CONTACT_WEIBO') },
     { name: '小红书', url: siteConfig('CONTACT_XIAOHONGSHU') },
     { name: 'Email', url: siteConfig('CONTACT_EMAIL') ? `mailto:${siteConfig('CONTACT_EMAIL')}` : '' }
   ].filter(link => link.url) // 只显示已配置的链接
 
   return (
     <footer className='w-full mt-20 pt-1 border-t border-gray-200 dark:border-gray-700'>
-      <div className='w-full px-20 py-12'>
+      <div className='w-full px-4 md:px-10 lg:px-20 py-12'>
         {/* 网站描述文字 - 仿 holmberg.io */}
         <p className='text-center text-[20.72px] text-gray-600 dark:text-gray-400 mb-4'>
           This website is made by {author}. Since {since}.

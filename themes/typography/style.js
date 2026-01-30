@@ -358,6 +358,7 @@ const Style = () => {
         padding: 16px 16px 16px 16px !important; /* 上右下左,减小底部内边距 */
         margin: 4px 0 !important;
         align-items: flex-start !important; /* 改为顶部对齐而不是居中 */
+        border-color: #444 !important; /* 深色模式表头边框使用深灰色 */
       }
 
       /* Callout 图标 */
@@ -517,6 +518,55 @@ const Style = () => {
 
       .dark #theme-typography .notion th {
         background: #1f2937 !important;
+        border-color: #444 !important; /* 深色模式表头边框使用深灰色 */
+      }
+
+      /* ==================== 移动端响应式适配 ==================== */
+      
+      @media (max-width: 768px) {
+        /* 正文字体 - 从20px减小到18px */
+        #theme-typography .notion-text,
+        #theme-typography .notion p {
+          font-size: 18px !important;
+          line-height: 1.7 !important; /* 增加行高提升可读性 */
+        }
+
+        /* H1标题 - 从32px减小到26px */
+        #theme-typography h2.notion-h1 {
+          font-size: 26px !important;
+        }
+
+        /* H2标题 - 从26px减小到22px */
+        #theme-typography h3.notion-h2 {
+          font-size: 22px !important;
+        }
+
+        /* H3标题 - 从22px减小到20px */
+        #theme-typography h4.notion-h3 {
+          font-size: 20px !important;
+        }
+
+        /* 列表 - 从20px减小到18px */
+        #theme-typography .notion ul,
+        #theme-typography .notion ol {
+          font-size: 18px !important;
+        }
+
+        /* 列表项 */
+        #theme-typography .notion li {
+          font-size: 18px !important;
+        }
+
+        /* 代码块字体 - 从16px减小到14px */
+        #theme-typography .notion code,
+        #theme-typography .notion pre code {
+          font-size: 14px !important;
+        }
+
+        /* 表格字体 */
+        #theme-typography .notion table {
+          font-size: 16px !important;
+        }
       }
     `}</style>
   )
