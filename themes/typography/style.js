@@ -460,16 +460,25 @@ const Style = () => {
 
       /* ==================== GitHub外部链接样式优化 ==================== */
       
-      /* 强制缩小链接容器高度并实现完美垂直居中 */
+      /* ==================== 外部链接与书签样式 ==================== */
+
+      /* 1. 行内外部链接 (Inline Link) - 例如: 下载仓库里的文件 RIME-LMDG */
       #theme-typography .notion-external-mention {
-        height: 1.4em !important;        /* 强制高度跟随字体大小 */
         display: inline-flex !important;
-        align-items: center !important;  /* 内部内容垂直居中 */
-        vertical-align: middle !important; /* 整个块在行中文本居中 */
-        top: -2px !important;               /* 移除原本向下的3px偏移 */
-        padding: 0 4px !important;       /* 左右留一点边距 */
-        margin: 0 2px !important;
+        height: 1.4em !important;
         line-height: 1 !important;
+        align-items: center !important;
+        vertical-align: middle !important;
+        margin: 0 2px !important;
+        padding: 0 4px !important;
+        border-radius: 4px !important; /* 核心：行内链接圆角 4px */
+        top: -2px !important;
+        transition: background-color 0.2s ease !important;
+      }
+      
+      /* 行内链接 Hover */
+      #theme-typography .notion-external-mention:hover {
+        background: #41c3f7 !important;
       }
 
       /* 优化GitHub图标对齐 */
@@ -491,15 +500,60 @@ const Style = () => {
       #theme-typography .notion-external-mention .notion-external-title {
         font-size: 1em !important;
         line-height: 1 !important;
-        border-bottom: none !important;  /* 必须移除!否则文字视觉上会偏下 */
+        border-bottom: none !important;
         padding: 0 !important;
         margin: 0 !important;
       }
 
-      /* 优化hover效果 - 正确的选择器 */
-      #theme-typography .notion-external:hover {
+      /* 2. 块级书签与卡片 (Block Bookmark) - 例如: GitHub 仓库卡片、Notion 书签 */
+      #theme-typography .notion-external-block,
+      #theme-typography .notion-bookmark,
+      #theme-typography .notion-collection-card {
+        border-radius: 12px !important; /* 核心：块级书签圆角 12px */
+        overflow: hidden !important; /* 确保内容不溢出圆角 */
+        transition: background-color 0.2s ease, border-color 0.2s ease !important;
+      }
+
+      /* 块级书签 Hover */
+      #theme-typography .notion-external-block:hover,
+      #theme-typography .notion-bookmark:hover,
+      #theme-typography .notion-collection-card:hover {
         background: #41c3f7 !important;
-        border-radius: 8px !important;
+        border-color: #41c3f7 !important;
+      }
+
+      /* 右侧封面图 - 强制填满容器 */
+      #theme-typography .notion-bookmark-image img,
+      #theme-typography .notion-collection-card-cover img {
+        margin: 0 !important; /* 去除莫名其妙的margin */
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* 填满区域 */
+        border-radius: 0 12px 12px 0 !important; /* 仅右侧圆角 */
+      }
+
+      /* 左侧小icon - 防止被裁剪 */
+      #theme-typography .notion-bookmark-icon img,
+      #theme-typography .notion-bookmark-link-icon img {
+        border-radius: 0 !important; /* 重置圆角，防止变成圆形或被切 */
+        width: 16px !important;
+        height: 16px !important;
+        object-fit: contain !important;
+        margin: 0 !important;
+      }
+
+      /* 书签hover效果 */
+      #theme-typography .notion-bookmark:hover,
+      #theme-typography .notion-collection-card:hover {
+        background: #41c3f7 !important;
+        border-color: #41c3f7 !important;
+      }
+
+      /* 暗色模式书签hover */
+      .dark #theme-typography .notion-bookmark:hover,
+      .dark #theme-typography .notion-collection-card:hover {
+        background: #41c3f7 !important;
+        border-color: #41c3f7 !important;
       }
 
       /* ==================== 表格样式 ==================== */
@@ -573,6 +627,13 @@ const Style = () => {
         #theme-typography .notion code,
         #theme-typography .notion pre code {
           font-size: 14px !important;
+        }
+
+        /* 代码块容器 - 更紧凑的行高和padding */
+        #theme-typography .notion-code,
+        #theme-typography pre {
+          line-height: 1.5 !important; /* 从1.6减小到1.5,让代码行更紧凑 */
+          padding: 16px 20px !important; /* 从24px/28px减小到16px/20px */
         }
 
         /* 表格字体 */

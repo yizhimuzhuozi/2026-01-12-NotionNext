@@ -19,9 +19,9 @@ export default function ArticleInfo({ post }) {
 
       {/* 标签 */}
       {post?.tags && post.tags.length > 0 && (
-        <div className='flex gap-3 mt-2'>
+        <div className='flex flex-wrap gap-2 mt-4'>
           {post.tags.map(tag => (
-            <span key={tag} className='text-[16px] font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 border-black dark:border-white px-3 py-1 rounded-md inline-block'>
+            <span key={tag} className='text-[16px] font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-md inline-block'>
               #{tag}
             </span>
           ))}

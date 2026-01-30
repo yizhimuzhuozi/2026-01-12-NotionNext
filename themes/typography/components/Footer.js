@@ -30,15 +30,15 @@ export default function Footer() {
   ].filter(link => link.url) // 只显示已配置的链接
 
   return (
-    <footer className='w-full mt-20 pt-1 border-t border-gray-200 dark:border-gray-700'>
-      <div className='w-full px-4 md:px-10 lg:px-20 py-12'>
+    <footer className='w-full mt-12 pt-1 border-t border-gray-200 dark:border-gray-700'>
+      <div className='w-full px-4 md:px-10 lg:px-20 py-3 md:py-4'>
         {/* 网站描述文字 - 仿 holmberg.io */}
-        <p className='text-center text-[20.72px] text-gray-600 dark:text-gray-400 mb-4'>
+        <p className='font-bold text-center text-sm text-gray-600 dark:text-gray-400 mb-4'>
           This website is made by {author}. Since {since}.
         </p>
 
         {/* 导航和社交链接 */}
-        <div className='flex flex-wrap justify-center items-center gap-4 text-[20.72px]'>
+        <div className='flex flex-wrap justify-center items-center gap-2 text-[16px]'>
           {/* 主要导航 */}
           {navLinks.map((link, index) => (
             <span key={link.name}>
