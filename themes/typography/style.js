@@ -215,6 +215,18 @@ const Style = () => {
         color: #fff !important;
       }
 
+      /* ==================== TOC跳转优化 ==================== */
+      
+      /* 确保点击TOC跳转时标题不会被遮挡 */
+      #theme-typography .notion h1[id],
+      #theme-typography .notion h2[id],
+      #theme-typography .notion h3[id],
+      #theme-typography .notion h4[id],
+      #theme-typography .notion h5[id],
+      #theme-typography .notion h6[id] {
+        scroll-margin-top: 100px; /* 滚动时留出顶部100px空间 */
+      }
+
       /* ==================== 代码块样式 ==================== */
       
       /* 代码块容器 */

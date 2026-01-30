@@ -16,6 +16,7 @@ import Footer from './components/Footer'
 import JumpToTopButton from './components/JumpToTopButton'
 import NavBar from './components/NavBar'
 import RecommendPosts from './components/RecommendPosts'
+import TocAside from './components/TocAside'
 import CONFIG from './config'
 import { Style } from './style'
 
@@ -104,7 +105,7 @@ const LayoutSlug = props => {
   const { post, lock, validPassword, recommendPosts } = props
 
   return (
-    <div className='max-w-[781px]'>
+    <div className='max-w-[780px]'>
       {lock && <ArticleLock validPassword={validPassword} />}
 
       {!lock && post && (
