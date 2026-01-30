@@ -330,7 +330,8 @@ const Style = () => {
       #theme-typography .notion ol {
         font-size: 20px !important;
       /*  line-height: 1 !important;  与 holmberg.io 一致 */
-        padding-left: 1.5em !important; /* 缩进距离 */
+        padding-left: 2em !important; /* 核心：增加到 2em 为序号留出空间 */
+        margin-left: 0 !important;
       }
 
       /* 有序列表数字加粗 */
