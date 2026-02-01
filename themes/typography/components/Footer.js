@@ -13,7 +13,7 @@ export default function Footer() {
 
   // 社交链接配置 - 添加所有已配置的社交平台
   const socialLinks = [
-    { name: 'RSS', url: '/rss.xml', icon: 'fas fa-rss' }, // RSS 图标放在最前
+    { name: 'RSS', url: '/rss/feed.xml', icon: 'fas fa-rss' }, // RSS 图标放在最前
     { name: 'GitHub', url: siteConfig('CONTACT_GITHUB'), icon: 'fab fa-github' },
     { name: 'Twitter', url: siteConfig('CONTACT_TWITTER'), icon: 'fab fa-twitter' },
     { name: 'Telegram', url: siteConfig('CONTACT_TELEGRAM'), icon: 'fab fa-telegram' },
