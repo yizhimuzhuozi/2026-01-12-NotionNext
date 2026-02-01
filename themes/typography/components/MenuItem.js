@@ -32,7 +32,7 @@ export const MenuItem = ({ link }) => {
             {/* 没有子菜单 - 直接链接 */}
             {!hasSubMenu && (
                 <SmartLink href={link.href} target={link?.target}>
-                    <span className='font-bold text-base text-black dark:text-white px-2 py-1 rounded-lg hover:bg-[#e4e7e8] dark:hover:bg-gray-700 transition-all cursor-pointer block'>
+                    <span className='font-bold text-sm text-black dark:text-white px-2 py-1 rounded-lg hover:bg-[#e4e7e8] dark:hover:bg-gray-700 transition-all cursor-pointer block'>
                         {link.name}
                     </span>
                 </SmartLink>
@@ -41,7 +41,10 @@ export const MenuItem = ({ link }) => {
             {/* 有子菜单 - 显示下拉按钮 */}
             {hasSubMenu && (
                 <>
-                    <div className='font-bold text-base text-black dark:text-white px-2 py-0 rounded-lg hover:bg-[#41c3f7] dark:hover:bg-gray-700 transition-all cursor-pointer'>
+                    <div
+                        onClick={() => setShowDropdown(!showDropdown)}
+                        className='font-bold text-sm text-black dark:text-white px-2 py-0 rounded-lg hover:bg-[#41c3f7] dark:hover:bg-gray-700 transition-all cursor-pointer'
+                    >
                         {link.name}
                     </div>
 
@@ -54,7 +57,7 @@ export const MenuItem = ({ link }) => {
                                     href={subLink.href}
                                     target={subLink?.target}
                                 >
-                                    <div className='px-4 py-1.5 text-[18px] font-semibold text-gray-700 dark:text-gray-300 hover:bg-[#41c3f7] dark:hover:bg-gray-700 transition-colors cursor-pointer'>
+                                    <div className='px-4 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 hover:bg-[#41c3f7] dark:hover:bg-gray-700 transition-colors cursor-pointer'>
                                         {subLink.title}
                                     </div>
                                 </SmartLink>
