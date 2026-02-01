@@ -145,16 +145,16 @@ const nextConfig = {
     ? undefined
     : () => {
       return [
-        {
-          source: '/feed',
-          destination: '/rss/feed.xml',
-          permanent: true
-        },
-        {
-          source: '/rss.xml',
-          destination: '/rss/feed.xml',
-          permanent: true
-        }
+        // {
+        //   source: '/feed',
+        //   destination: '/rss/feed.xml',
+        //   permanent: true
+        // },
+        // {
+        //   source: '/rss.xml',
+        //   destination: '/rss/feed.xml',
+        //   permanent: true
+        // }
       ]
     },
   // 重写url
@@ -198,6 +198,14 @@ const nextConfig = {
 
       return [
         ...langsRewrites,
+        {
+          source: '/rss/feed.xml',
+          destination: '/rss.xml',
+        },
+        {
+          source: '/feed',
+          destination: '/rss.xml',
+        },
         // 伪静态重写
         {
           source: '/:path*.html',
