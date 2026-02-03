@@ -105,18 +105,18 @@ const LayoutArchive = props => {
   return (
     <div className='mb-10 pb-20 md:py-12 py-3 min-h-screen'>
       {Object.keys(archivePosts).map(archiveTitle => (
-        <div key={archiveTitle} className='relative mb-12 ml-4'>
+        <div key={archiveTitle} className='relative mb-12'>
           {/* 时间轴竖线 - 改为直角左括号样式，位于日期下方，向下延长 */}
-          <div className='absolute left-6 top-8 -bottom-2 border-l border-t border-b border-gray-300 dark:border-gray-700'></div>
+          <div className='absolute left-0 top-8 -bottom-2 border-l border-t border-b border-gray-300 dark:border-gray-700'></div>
 
-          <h2 className='text-2xl font-bold mb-6 dark:text-gray-100 leading-none pl-6 relative'>
+          <h2 className='text-2xl font-bold mb-6 dark:text-gray-100 leading-none pl-0 relative'>
             {archiveTitle}
             <span className='text-sm font-normal ml-2 text-gray-500'>
               ({archivePosts[archiveTitle].length} 篇)
             </span>
           </h2>
 
-          <ul className='space-y-6 pl-12 relative'>
+          <ul className='space-y-6 pl-6 relative'>
             {archivePosts[archiveTitle].map(post => (
               <li key={post.id} className='flex flex-col group'>
                 {/* 文章标题 - hover变蓝底黑字 */}
