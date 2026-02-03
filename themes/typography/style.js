@@ -152,10 +152,10 @@ const Style = () => {
       /* 链接样式 - 只针对正文普通链接,排除书签、外部块、文件下载 */
       /* 使用 .notion-link 精确定位,排除特殊块 */
       #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link) {
-        color: #000 !important;
+        color: inherit !important; /* 跟随正文颜色 */
         text-decoration: underline !important;
-        text-decoration-thickness: 2.6px !important;
-        text-decoration-color: #000 !important;
+        text-decoration-thickness: 1.3px !important; /* 减小下划线粗细 (原2.6px -> 1.3px) */
+        text-decoration-color: inherit !important; /* 下划线颜色跟随文字 */
         text-decoration-skip-ink: auto !important;
         border-bottom: none !important; /* 移除 Notion 默认的 border-bottom,避免双重下划线 */
         transition: text-decoration-color 0.2s ease !important;
@@ -167,8 +167,8 @@ const Style = () => {
 
       /* 暗色模式链接 */
       .dark #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link) {
-        color: #fff !important;
-        text-decoration-color: #fff !important;
+        color: inherit !important;
+        text-decoration-color: inherit !important;
       }
 
       .dark #theme-typography .notion a.notion-link:not(.notion-bookmark):not(.notion-external):not(.notion-hash-link):hover {
