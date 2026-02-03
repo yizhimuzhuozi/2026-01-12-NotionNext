@@ -95,7 +95,48 @@ const LayoutSearch = props => {
  * 归档页
  */
 const LayoutArchive = props => {
-  return <LayoutPostList {...props} />
+  const { archivePosts } = props
+
+  // 处理空数据情况
+  if (!archivePosts || Object.keys(archivePosts).length === 0) {
+    return <></>
+  }
+
+  return (
+    <div className='mb-10 pb-20 md:py-12 py-3 min-h-screen'>
+      {Object.keys(archivePosts).map(archiveTitle => (
+        <div key={archiveTitle} className='relative mb-12 ml-4'>
+          {/* 时间轴竖线 - 改为直角左括号样式，位于日期下方，向下延长 */}
+          <div className='absolute left-6 top-8 -bottom-2 border-l border-t border-b border-gray-300 dark:border-gray-700'></div>
+
+          <h2 className='text-2xl font-bold mb-6 dark:text-gray-100 leading-none pl-6 relative'>
+            {archiveTitle}
+            <span className='text-sm font-normal ml-2 text-gray-500'>
+              ({archivePosts[archiveTitle].length} 篇)
+            </span>
+          </h2>
+
+          <ul className='space-y-6 pl-12 relative'>
+            {archivePosts[archiveTitle].map(post => (
+              <li key={post.id} className='flex flex-col group'>
+                {/* 文章标题 - hover变蓝底黑字 */}
+                <div className='w-fit'>
+                  <SmartLink href={post.href} className='text-lg text-black dark:text-gray-200 hover:bg-[#41c3f7] hover:text-black dark:hover:text-black font-medium transition-all duration-200 px-1 py-0.5 -ml-2'>
+                    {post.title}
+                  </SmartLink>
+                </div>
+
+                {/* 发布日期 */}
+                <span className='text-sm text-gray-400 font-mono mt-1'>
+                  {post.date?.start_date}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 /**
