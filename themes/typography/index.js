@@ -79,9 +79,9 @@ const LayoutIndex = props => {
  * 文章列表页
  */
 const LayoutPostList = props => {
-  const { posts, page, postCount } = props
+  const { posts, page, postCount, tag } = props
   const totalPage = Math.ceil(postCount / siteConfig('POSTS_PER_PAGE', 12))
-  return <BlogListPage posts={posts} page={page} totalPage={totalPage} />
+  return <BlogListPage posts={posts} page={page} totalPage={totalPage} tag={tag} />
 }
 
 /**
@@ -95,7 +95,8 @@ const LayoutSearch = props => {
  * 归档页
  */
 const LayoutArchive = props => {
-  const { archivePosts } = props
+  const { archivePosts, categoryOptions, tagOptions } = props
+  console.log('[LayoutArchive] props:', { categoryOptionsCount: categoryOptions?.length, tagOptionsCount: tagOptions?.length })
 
   // 处理空数据情况
   if (!archivePosts || Object.keys(archivePosts).length === 0) {
@@ -104,6 +105,37 @@ const LayoutArchive = props => {
 
   return (
     <div className='mb-10 pb-20 md:py-12 py-3 min-h-screen'>
+      {/* 分类和标签索引区域 */}
+      <div className='mb-12'>
+        {/* 分类列表 */}
+        {categoryOptions?.length > 0 && (
+          <div className='mb-8'>
+            <h2 className='text-2xl font-bold mb-4 dark:text-gray-100'>Categories</h2>
+            <div className='flex flex-wrap gap-x-6 gap-y-2'>
+              {categoryOptions.map(category => (
+                <SmartLink key={category.name} href={`/category/${category.name}`} className='text-base font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors'>
+                  {category.name} <span className='text-gray-400 text-sm font-normal'>({category.count})</span>
+                </SmartLink>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 标签列表 */}
+        {tagOptions?.length > 0 && (
+          <div className='mb-12'>
+            <h2 className='text-2xl font-bold mb-4 dark:text-gray-100'>Tags</h2>
+            <div className='flex flex-wrap gap-2'>
+              {tagOptions.map(tag => (
+                <SmartLink key={tag.name} href={`/tag/${tag.name}`} className='text-[16px] font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-md inline-block hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'>
+                  #{tag.name} <span className='text-gray-500 font-normal ml-1'>({tag.count})</span>
+                </SmartLink>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       {Object.keys(archivePosts).map(archiveTitle => (
         <div key={archiveTitle} className='relative mb-12'>
           {/* 时间轴竖线 - 改为直角左括号样式，位于日期下方，向下延长 */}

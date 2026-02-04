@@ -1,7 +1,9 @@
 /**
  * 文章信息 - holmberg.io 风格
- * 日期在上,大标题在下,使用 Tailwind CSS
+ * 日期在上, 大标题在下, 使用 Tailwind CSS
  */
+import SmartLink from '@/components/SmartLink'
+
 export default function ArticleInfo({ post }) {
   return (
     <header className='mb-6 max-w-[780px]'>
@@ -21,9 +23,9 @@ export default function ArticleInfo({ post }) {
       {post?.tags && post.tags.length > 0 && (
         <div className='flex flex-wrap gap-2 mt-4'>
           {post.tags.map(tag => (
-            <span key={tag} className='text-[16px] font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-md inline-block'>
+            <SmartLink key={tag} href={`/tag/${tag}`} className='text-[16px] font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-md inline-block hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'>
               #{tag}
-            </span>
+            </SmartLink>
           ))}
         </div>
       )}
