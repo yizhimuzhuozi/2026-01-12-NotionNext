@@ -23,6 +23,7 @@ import dynamic from 'next/dynamic'
 const ClerkProvider = dynamic(() =>
   import('@clerk/nextjs').then(m => m.ClerkProvider)
 )
+import { Analytics } from '@vercel/analytics/react'
 
 /**
  * App挂载DOM 入口文件
@@ -68,6 +69,7 @@ const MyApp = ({ Component, pageProps }) => {
       ) : (
         content
       )}
+      <Analytics />
     </>
   )
 }
