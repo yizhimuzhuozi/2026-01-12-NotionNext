@@ -24,6 +24,7 @@ const ClerkProvider = dynamic(() =>
   import('@clerk/nextjs').then(m => m.ClerkProvider)
 )
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 /**
  * App挂载DOM 入口文件
@@ -70,6 +71,7 @@ const MyApp = ({ Component, pageProps }) => {
         content
       )}
       <Analytics />
+      <SpeedInsights />
     </>
   )
 }
